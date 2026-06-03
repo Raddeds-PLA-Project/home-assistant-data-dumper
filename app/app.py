@@ -5,6 +5,7 @@ from util import log
 from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase
 from api.api import HomeAssistantAPI
+from datetime import datetime
 
 # Initialize Flask app
 app = Flask(__name__, static_url_path="", static_folder=BUILT_FRONTEND_PATH)
@@ -27,6 +28,9 @@ def main():
 
     # Initialize API connection
     hass_api = HomeAssistantAPI()
+    
+    # TODO: Test logbook connection
+    hass_api.retrieve_log(datetime.now())
 
 
 ### Application startup methods
