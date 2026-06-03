@@ -19,7 +19,7 @@ A robust app to dump the time-series Entity state data from Home Assistant. This
 
 ### Existing HA instance:
 
-- Clone this repo into your Home Assistant `/root/addons` folder
+- Clone this repo (with `--recursive` ) into your Home Assistant `/root/addons` folder
 - In Home Assistant, go to Settings > Apps (formerly Addons) > Install App > Local Apps and install "Radded's Home Assistant Data Dumper"
 - You can also do development using VSCode Remote SSH
 
