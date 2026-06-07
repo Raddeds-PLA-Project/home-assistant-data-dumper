@@ -12,7 +12,7 @@ class EntityHistoryDatabase:
         ### Initialize SQLite3 database
         # This file goes into the container root. It will be preserved upon uninstall, UNLESS the user selects "remove app data"
         log.info("Creating database...")
-        self.conn = sqlite3.connect("/data/radded_data_dumper.sqlite3")
+        self.conn = sqlite3.connect(placeholders.DATABASE_LOCATION)
         self.cur = self.conn.cursor()
         
         self.__send_query("""

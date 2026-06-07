@@ -24,9 +24,10 @@ hass_api = None
 def redirect_index():
     return redirect("/index.html")
 
-@app.route("/api")
-def api_route():
-    return api.api_root(request)
+@app.route("/api", defaults={"subpath": ""})
+@app.route("/api/<path:subpath>")
+def api_route(subpath):
+    return api.api_root(request, subpath)
 
 
 ### Application startup

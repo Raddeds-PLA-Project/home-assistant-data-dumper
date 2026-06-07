@@ -12,6 +12,8 @@ DATABASE_VERSION = 2 # DO NOT CHANGE UNLESS MIGRATIONS ARE NOT WORKING
 HASS_API_URL = "http://supervisor/core/api"
 # The location of the Frontend static files.
 BUILT_FRONTEND_PATH = "/frontend/dist"
+# The location for the database file
+DATABASE_LOCATION = "/data/radded_data_dumper.sqlite3"
 
 
 ### LOGGING ###
