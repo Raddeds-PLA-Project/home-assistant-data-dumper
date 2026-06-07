@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from flask import Flask, redirect
+from flask import Flask, redirect, request
 from util import log
 from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase, LogEntry
@@ -9,18 +9,27 @@ from addon_api import api
 import datetime
 import json
 
-# Initialize Flask app
+
+### Initialize Flask app
 app = Flask(__name__, static_url_path="", static_folder=BUILT_FRONTEND_PATH)
 
-# Routes
+
+### Global fields
+app_db = None
+hass_api = None
+
+
+### Routes
 @app.route("/")
 def redirect_index():
     return redirect("/index.html")
 
 @app.route("/api")
 def api_route():
-    return api.api_root()
+    return api.api_root(request)
 
+
+### Application startup
 # Startup
 def main():
     log.info("Starting addon...")
@@ -30,14 +39,9 @@ def main():
 
     # Initialize API connection
     hass_api = HomeAssistantAPI()
-    
-    # Test database
-    print("Inserting test entry")
-    app_db.insert_complete_entry(LogEntry(datetime.datetime.now(datetime.UTC), "Test Entry", json.loads('{"name":"Home Assistant","message":"started","icon":"mdi:home-assistant","domain":"homeassistant","when":"2026-06-05T18:12:01.351850+00:00"}')))
 
 
-### Application startup methods
-
+## Startup methods
 # python app.py
 # This should be called if ran by Home Assistant and is the default launch method.
 if __name__ == "__main__":

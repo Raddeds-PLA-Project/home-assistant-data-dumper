@@ -1,2 +1,2 @@
-def api_root():
-    
+def api_root(request):
+    print(request)
