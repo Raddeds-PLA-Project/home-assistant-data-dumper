@@ -1,6 +1,13 @@
 name: "Radded's Home Assistant Data Dumper"
 description: "Dump time-series entity state data from Home Assistant."
-version: 0.4631_alpha_json_log
+# Version denotation:
+# 1.2345
+# | ||||_ Quickfix / hotfix
+# | |||__ Minor feature
+# | ||___ Major feature
+# | |____ Minor release
+# |______ Major release
+version: 0.4642_alpha_worker_test
 slug: "radded_data_dumper"
 url: https://github.com/RaddedMC/home-assistant-data-dumper
 init: false
