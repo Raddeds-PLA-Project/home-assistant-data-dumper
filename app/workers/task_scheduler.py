@@ -11,7 +11,7 @@ class ScheduleEntry:
         self.task = task # The task to run
         self.daily = daily # Run daily? (Will automatically reschedule for the same time next day, in perpetuity)
 
-    # 
+    # Prints the schedule
     def info(self):
         return {
             "task": self.task.info(),
@@ -63,7 +63,9 @@ class TaskScheduler:
             for idx, entry in enumerate(self.__entry_list):
                 if current_time < entry.queue_time:
                     # Run the task
+                    self.__fire_schedule_entry(entry)
                     # Pop it from the list
+                    self.__entry_list.pop(idx)
                     pass
             asyncio.sleep(15) # Sleep for 15 seconds, we don't need terribly large precision
         log.info("Shutdown schedule recieved! Terminating scheduler")
