@@ -32,7 +32,7 @@ def list_domains():
 	def __importfilter__(s):
 		imported = ".py" in s and "_" not in s
 		if imported:
-			log.info(f"Importing domain {s}")
+			log.toomuchinfo(f"Importing domain {s}")
 		return imported
 
 	# List files in this folder, run them through the above filter to get only the domain python files, then strip the ".py"

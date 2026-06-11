@@ -64,6 +64,7 @@ class EntityHistoryDatabase:
         # Commit all queries
         self.conn.commit()
 
+
 class LogEntry:
     # An entry in the LogEntry database.
         # Timestamp, self explanatory

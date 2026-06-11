@@ -19,16 +19,36 @@ WorkerState = Enum('WorkerState', [
 
 # Tasks can inherit this for polymorphic behaviour
 class Task:
-    def __init__(self, title: str):
+    def __init__(self, title: str, description: str = ""):
         self.title = title
         self.status = TaskState.NOT_STARTED
         self.type = __name__
+        self.description = description
+        self.error = None
+        log.info(f"Created {self.type}: {self.title}")
+        log.toomuchinfo(f"{self.type} {self.title}: {self.description}")
         
     # Since this is a generic, we will just do nothing here.
     # Override this function when developing your background task
     def run(self):
         # Some code would normally run here
         self.status = TaskState.COMPLETED
+
+    # Lists the info of the task
+    def info(self):
+        return {
+            "type": self.type,
+            "title": self.title,
+            "status": str(self.status),
+            "description": self.description,
+            "error": str(self.error)
+        }
+
+    # Updates the description and logs the change
+    # TIL: Double underscore makes child classes unable to access the method!
+    def _update_description(self, desc):
+        self.description = desc
+        log.toomuchinfo(f"{self.type} {self.title}: {self.description}")
 
 # Background task runner.
 class TaskWorker:
@@ -52,9 +72,16 @@ class TaskWorker:
         while not self.__shutdown:
             
             # If there are no new tasks, hold in idle state
+            idle_logged = False
             while self.state == WorkerState.IDLE:
                 if self.__current_task_index in range(len(self.__task_queue)):
-                    self.state == WorkerState.RUNNING
+                    self.state = WorkerState.RUNNING
+                else:
+                    if not idle_logged:
+                        log.info("Task worker is currently Idle")
+                        idle_logged = True
+                    await asyncio.sleep(0.1)
+
                     
             # Retrieve current task
             current_task = self.__task_queue[self.__current_task_index]
@@ -62,11 +89,14 @@ class TaskWorker:
             # Run it
             try:
                 log.info(f"Starting task {current_task.type}: {current_task.title}")
-                await current_task.run()
+                result = current_task.run()
+                if asyncio.iscoroutine(result):
+                    await result
                 
             # If error, output it and continue
             except Exception as e:
                 log.error(f"{current_task.type} {current_task.title} had an error: {e}")
+                current_task.error = e
                 current_task.status = TaskState.FAILED
                 
             # If we get here, the task was completed
@@ -77,25 +107,20 @@ class TaskWorker:
                 current_task.status = TaskState.COMPLETED
             
             # Set the worker to idle and move to the next task
-            self.__task_queue += 1
+            self.__current_task_index += 1
             self.state = WorkerState.IDLE
-            
-        # Shutdown signal is sent and last task is completed.
-        log.info("Shutdown signal recieved! Ending task worker.")
-        self.state = WorkerState.SHUT_DOWN
+
+            # Put to sleep to catch interrupts etc
+            await asyncio.sleep(0.1)
             
     # When tasks are added, they will be started as soon as possible once the worker is running.
-    async def add_task(self, task: Task):
+    def add_task(self, task: Task):
         log.info(f"Added task {task.type}: {task.title}")
         self.__task_queue.append(task)
         
     # List task info, this includes the archive of completed tasks at the top.
     def list_tasks(self):
-        return [{
-            "type": task.type,
-            "name": task.name,
-            "status": task.status
-        } for task in self.__task_queue]
+        return [task.info() for task in self.__task_queue]
         
     # Shuts down the task worker if it's running. This will allow the last running task to be completed.
     def shutdown(self):

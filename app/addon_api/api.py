@@ -1,11 +1,20 @@
 from flask import abort
+from workers.task_worker import TaskWorker
 from util import log
 
 from .export_db import export_database
 
 
-def api_root(request, subpath=""):
+def api_root(request, app_db, hass_api, worker : TaskWorker, subpath=""):
+
+    # List tasks
+    if subpath == "worker/tasks":
+        return {
+            "status": str(worker.state),
+            "tasks": worker.list_tasks()
+        }
     
+    # Export data
     if subpath == "export/sqlite":
         return export_database()
 

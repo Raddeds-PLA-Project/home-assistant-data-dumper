@@ -4,18 +4,18 @@ import datetime
 from . import placeholders
 
 def error(msg):
-    __log__(msg, "ERROR")
+    __log(msg, "ERROR")
 
 def warning(msg):
-    __log__(msg, "WARNING")
+    __log(msg, "WARNING")
 
 def info(msg):
     if placeholders.LOG_LEVEL <= placeholders.LOG_LEVELS.NORMAL:
-        __log__(msg, "INFO")
+        __log(msg, "INFO")
 
 def toomuchinfo(msg):
     if placeholders.LOG_LEVEL <= placeholders.LOG_LEVELS.INSANE:
-        __log__(msg, "TMI")
+        __log(msg, "TMI")
 
-def __log__(msg, status):
+def __log(msg, status):
     print(f"radded_data_dumper: [{status}] @ {str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))} : {msg}")
