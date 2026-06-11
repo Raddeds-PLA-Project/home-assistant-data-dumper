@@ -63,6 +63,7 @@ class TaskWorker:
         # Set state
         self.state = WorkerState.NOT_STARTED
         
+    # Run the task queue asynchronously
     async def start_worker(self):
         # Begin running tasks
         log.info("Task worker started")
