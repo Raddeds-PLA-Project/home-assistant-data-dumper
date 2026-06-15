@@ -8,6 +8,7 @@ from db.db import EntityHistoryDatabase, LogEntry
 from hass_api.api import HomeAssistantAPI
 from addon_api import api
 from workers import task_worker, test_task, task_scheduler
+import datetime
 
 
 ### Initialize Flask app
@@ -31,14 +32,24 @@ def redirect_index():
 @app.route("/api", defaults={"subpath": ""})
 @app.route("/api/<path:subpath>")
 def api_route(subpath):
-    return api.api_root(request, app_db, hass_api, worker, subpath)
+    return api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
 
-# TODO: This is a test. Now that testing is done, remove this!
-@app.route("/test/<data>")
+# TODO: Test to create tasks
+@app.route("/task/<data>")
 def worker_test(data):
     tt = test_task.TestTask(data)
     worker.add_task(tt)
     return f"Add test task {data}"
+
+# TODO: Test to schedule tasks
+@app.route("/schedule/<time>/<name>")
+def scheduler_test(time, name):
+    ts = task_scheduler.ScheduleEntry(
+        queue_at = datetime.datetime.fromisoformat(time),
+        task = test_task.TestTask(name)
+    )
+    scheduler.add_schedule_entry(ts)
+    return f"Added schedule entry {name} for {time}"
 
 
 ### Application startup
@@ -65,12 +76,6 @@ def setup():
 
 # Main thread
 async def run():
-    # Run Flask in a background thread
-    def start_flask():
-        app.run(host="0.0.0.0", port=8099, debug=True, use_reloader=False) # TODO: Debug probably isn't the best for production!
-    flask_thread = threading.Thread(target=start_flask, daemon=True)
-    flask_thread.start()
-
     # Run Task worker in a background thread
     def start_task_worker():
         asyncio.run(worker.start_worker())
@@ -79,7 +84,7 @@ async def run():
     
     # Run Scheduler in a background thread
     def start_scheduler():
-        asyncio.run(task_scheduler.start_scheduler())
+        asyncio.run(scheduler.start_scheduler())
     task_scheduler_thread = threading.Thread(target = start_scheduler, daemon=True)
     task_scheduler_thread.start()
     
@@ -87,10 +92,13 @@ async def run():
 def main():
     setup()
     try:
+        # Start background workers
         asyncio.run(run())
+        # Run Flask in the foreground
+        app.run(host="0.0.0.0", port=8099, debug=True, use_reloader=False) # TODO: Debug probably isn't the best for production!
     except KeyboardInterrupt:
         # TODO: Log the task that's shutting down
-        log.info(f"Interrupt signal recieved! Shutting down...")
+        log.info("Interrupt signal recieved! Shutting down...")
         worker.shutdown()
         scheduler.shutdown()
 

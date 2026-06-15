@@ -9,19 +9,16 @@
             "name": "Debug app outside of Home Assistant",
             "type": "debugpy",
             "request": "launch",
-            "module": "flask",
+            "program": "app.py",
             "cwd": "${workspaceFolder}/app",
-            "env": {
-                "FLASK_APP": "app.py",
-                "FLASK_DEBUG": "1"
-            },
             "args": [
                 "run",
                 "--no-debugger",
                 "--no-reload"
             ],
             "jinja": true,
-            "autoStartBrowser": false
+            "autoStartBrowser": false,
+            "python": "${workspaceFolder}/.venv/bin/python"
         }
     ]
 }

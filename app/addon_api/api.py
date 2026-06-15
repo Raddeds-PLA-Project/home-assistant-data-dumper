@@ -1,18 +1,17 @@
 from flask import abort
 from workers.task_worker import TaskWorker
+from workers.task_scheduler import TaskScheduler
 from util import log
 
 from .export_db import export_database
+from .worker import worker_root
 
+# Root entry for the API subpath.
+def api_root(request, app_db, hass_api, worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
 
-def api_root(request, app_db, hass_api, worker : TaskWorker, subpath=""):
-
-    # List tasks
-    if subpath == "worker/tasks":
-        return {
-            "status": str(worker.state),
-            "tasks": worker.list_tasks()
-        }
+    # Route to worker
+    if subpath.startswith("worker/"):
+        return worker_root(request, worker, scheduler, subpath)
     
     # Export data
     if subpath == "export/sqlite":
