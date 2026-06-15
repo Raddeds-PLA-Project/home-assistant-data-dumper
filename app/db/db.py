@@ -63,6 +63,9 @@ class EntityHistoryDatabase:
 
         # Commit all queries
         self.conn.commit()
+        
+    def time_of_last_entry(self):
+        pass
 
 
 class LogEntry:

@@ -7,8 +7,7 @@ from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase, LogEntry
 from hass_api.api import HomeAssistantAPI
 from addon_api import api
-from workers import task_worker, test_task, task_scheduler
-import datetime
+from workers import task_worker, task_scheduler
 
 
 ### Initialize Flask app
@@ -34,23 +33,6 @@ def redirect_index():
 def api_route(subpath):
     return api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
 
-# TODO: Test to create tasks
-@app.route("/task/<data>")
-def worker_test(data):
-    tt = test_task.TestTask(data)
-    worker.add_task(tt)
-    return f"Add test task {data}"
-
-# TODO: Test to schedule tasks
-@app.route("/schedule/<time>/<name>")
-def scheduler_test(time, name):
-    ts = task_scheduler.ScheduleEntry(
-        queue_time = datetime.datetime.fromisoformat(time),
-        task = test_task.TestTask(name)
-    )
-    scheduler.add_schedule_entry(ts)
-    return f"Added schedule entry {name} for {time}"
-
 
 ### Application startup
 
@@ -59,12 +41,12 @@ def setup():
     log.info("Starting addon...")
 
     # Initialize database
-    # global app_db
-    # app_db = EntityHistoryDatabase()
+    global app_db
+    app_db = EntityHistoryDatabase()
 
-    # # Initialize API connection
-    # global hass_api
-    # hass_api = HomeAssistantAPI()
+    # Initialize API connection
+    global hass_api
+    hass_api = HomeAssistantAPI()
     
     # Initialize TaskWorker
     global worker
@@ -87,6 +69,8 @@ async def run():
         asyncio.run(scheduler.start_scheduler())
     task_scheduler_thread = threading.Thread(target = start_scheduler, daemon=True)
     task_scheduler_thread.start()
+    
+    # Run data collection nightly
     
 # Prepare task startup
 def main():
