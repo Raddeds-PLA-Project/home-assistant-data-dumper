@@ -22,7 +22,7 @@ class Task:
     def __init__(self, title: str, description: str = ""):
         self.title = title
         self.status = TaskState.NOT_STARTED
-        self.type = __name__
+        self.type = type(self).__name__
         self.description = description
         self.error = None
         log.info(f"Created {self.type}: {self.title}")

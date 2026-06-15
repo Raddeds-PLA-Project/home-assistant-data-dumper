@@ -6,8 +6,8 @@ import asyncio
 
 # A Task Schedule entry
 class ScheduleEntry:
-    def __init__(self, queue_at: datetime.datetime, task: Task, daily = False):
-        self.queue_time = queue_at # The time to run this task.
+    def __init__(self, queue_time: datetime.datetime, task: Task, daily = False):
+        self.queue_time = queue_time # The time to run this task.
         self.task = task # The task to run
         self.daily = daily # Run daily? (Will automatically reschedule for the same time next day, in perpetuity)
 
@@ -15,7 +15,7 @@ class ScheduleEntry:
     def info(self):
         return {
             "task": self.task.info(),
-            "scheduled_for": self.queue_at,
+            "queue_time": self.queue_time.isoformat(),
             "daily": self.daily
         }
         
@@ -39,17 +39,19 @@ class TaskScheduler:
     # Adding the scheduled task to the task worker instead of running it here means that a long blocking task will not affect the schedule
     def __fire_schedule_entry(self, entry: ScheduleEntry):
         # Log fired schedule entry
-        log.info(f"Scheduled task {entry.task.type} {entry.task.title} fired! Added to Task Worker.")
+        log.info(f"Scheduled task {entry.task.type} {entry.task.title} for {entry.queue_time.isoformat()} fired! Added to Task Worker.")
         # Add to worker
         self.__task_worker.add_task(entry.task)
         # If entry is daily, reschedule for the next day
-        self.add_schedule_entry(
-            ScheduleEntry(
-                queue_at = entry.queue_time + datetime.timedelta(days=1),
-                task = entry.task,
-                daily = True
+        if entry.daily:
+            log.info(f"Rescheduling task {entry.task.type} {entry.task.title} for tomorrow...")
+            self.add_schedule_entry(
+                ScheduleEntry(
+                    queue_at = entry.queue_time + datetime.timedelta(days=1),
+                    task = entry.task,
+                    daily = True
+                )
             )
-        )
 
     # List the entries currently in the schedule        
     def list_schedule_entries(self):
@@ -57,17 +59,19 @@ class TaskScheduler:
     
     # Run the scheduler asynchronously
     async def start_scheduler(self):
+        log.info("Task scheduler started")
         while not self.__shutdown:
             # For all tasks, if the task time is later than the current time, run it and pop it from the list
             current_time = datetime.datetime.now()
             for idx, entry in enumerate(self.__entry_list):
-                if current_time < entry.queue_time:
+                if current_time > entry.queue_time:
+                    print(f"TESTING: {current_time} > {entry.queue_time}")
                     # Run the task
                     self.__fire_schedule_entry(entry)
                     # Pop it from the list
                     self.__entry_list.pop(idx)
                     pass
-            await asyncio.sleep(15) # Sleep for 15 seconds, we don't need terribly large precision
+            await asyncio.sleep(1) # Sleep for 1 second, we will sync tasks to that
         log.info("Shutdown schedule recieved! Terminating scheduler")
         
     # Shut down the scheduler cleanly

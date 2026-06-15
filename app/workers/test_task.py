@@ -7,7 +7,7 @@ class TestTask(Task):
     def __init__(self, title: str):
         self.time = random.randint(5, 25)
         log.info(f"Test task {title} of time {self.time} created")
-        super().__init__(title, description=f"Will burn time for {self.time}")
+        super().__init__(title, description=f"Will burn time for {self.time}s")
         
     def run(self):
         self.status = TaskState.RUNNING

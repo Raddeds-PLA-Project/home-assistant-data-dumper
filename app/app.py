@@ -45,7 +45,7 @@ def worker_test(data):
 @app.route("/schedule/<time>/<name>")
 def scheduler_test(time, name):
     ts = task_scheduler.ScheduleEntry(
-        queue_at = datetime.datetime.fromisoformat(time),
+        queue_time = datetime.datetime.fromisoformat(time),
         task = test_task.TestTask(name)
     )
     scheduler.add_schedule_entry(ts)
