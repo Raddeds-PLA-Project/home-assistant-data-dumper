@@ -2,11 +2,11 @@ from pathlib import Path
 import asyncio
 import threading
 from flask import Flask, redirect, request
-from util import log
+from util import log, placeholders
 from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase, LogEntry
 from hass_api.api import HomeAssistantAPI
-from addon_api import api
+from addon_api import api as addon_api
 from workers import task_worker, task_scheduler, test_task
 import datetime
 
@@ -32,7 +32,7 @@ def redirect_index():
 @app.route("/api", defaults={"subpath": ""})
 @app.route("/api/<path:subpath>")
 def api_route(subpath):
-    return api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
+    return addon_api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
 
 # Tests
 # TODO: Test to create tasks
@@ -52,11 +52,16 @@ def scheduler_test(time, name):
     scheduler.add_schedule_entry(ts)
     return f"Added schedule entry {name} for {time}"
 
+# TODO: Test to get log entry
+@app.route("/logtest/<timestart>/<timeend>")
+def log_entry_test(timestart, timeend):
+    return hass_api.retrieve_log(end_time=datetime.datetime.fromisoformat(timeend), start_time=datetime.datetime.fromisoformat(timestart))
+
 ### Application startup
 
 # Initialization
 def setup():
-    log.info("Starting addon...")
+    log.info(f"Starting Radded's Home Assistant Data Dumper: Version {placeholders.APP_VERSION}")
 
     # Initialize database
     global app_db

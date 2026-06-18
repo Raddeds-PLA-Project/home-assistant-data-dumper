@@ -15,6 +15,7 @@ RUN \
 # Copy addon source
 WORKDIR /
 COPY app/ /
+COPY config.yaml /
 COPY run.sh /
 RUN chmod a+x /run.sh
 

@@ -11,17 +11,17 @@ class EntityHistoryDatabase:
     def __init__(self):
         ### Initialize SQLite3 database
         # This file goes into the container root. It will be preserved upon uninstall, UNLESS the user selects "remove app data"
-        log.info("Creating database...")
+        log.info(f"Initializing Database, version {placeholders.DATABASE_VERSION}")
         self.conn = sqlite3.connect(placeholders.DATABASE_LOCATION)
         self.cur = self.conn.cursor()
         
+        # Create migration table
         self.__send_query("""
         CREATE TABLE IF NOT EXISTS DatadumperMigrations (
             version INT PRIMARY KEY,
             migratedAt DATETIME DEFAULT CURRENT_TIMESTAMP
         );
         """)
-        
         
         ### Check database version and handle migrations
         local_db_version = self.__send_query("""
@@ -64,8 +64,21 @@ class EntityHistoryDatabase:
         # Commit all queries
         self.conn.commit()
         
-    def time_of_last_entry(self):
-        pass
+    # Gets the time of the newest entry
+    def time_of_newest_entry(self):
+        result = self.__send_query("""
+        SELECT TimeStamp FROM EntityHistory
+        ORDER BY TimeStamp DESC
+        LIMIT 1;
+        """).fetchone()
+
+        # If there are no entries
+        if result is None:
+            log.toomuchinfo("No entries logged!")
+            return None
+
+        log.toomuchinfo(f"Last entry was logged at {result[0]}")
+        return datetime.fromisoformat(result[0])
 
 
 class LogEntry:

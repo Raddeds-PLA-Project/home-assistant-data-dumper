@@ -1,7 +1,7 @@
 from flask import abort
 from workers.task_worker import TaskWorker
 from workers.task_scheduler import TaskScheduler
-from util import log
+from util import log, placeholders
 
 from .export_db import export_database
 from .worker import worker_root
@@ -16,6 +16,13 @@ def api_root(request, app_db, hass_api, worker : TaskWorker, scheduler : TaskSch
     # Export data
     if subpath == "export/sqlite":
         return export_database()
+    
+    # App versions
+    if subpath == "versions":
+        return {
+            "app_version": placeholders.APP_VERSION,
+            "db_version": placeholders.DATABASE_VERSION
+        }
 
     # Fallback, no subpath
     if request.path == "/api":

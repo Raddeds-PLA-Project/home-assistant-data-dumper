@@ -27,7 +27,6 @@ class HomeAssistantAPI:
         self.conntest()
         
     # Tests the API connection to Home Assistant.
-    # TODO: Fails on reboot for some reason
     def conntest(self):
         log.info("Testing connection to Home Assistant...")
         count = 0
@@ -47,6 +46,7 @@ class HomeAssistantAPI:
                 break
         
     # Retrieves a JSON logbook from a specified time range.
+    # Formatted as a List of Log objects. See previous notes for the structure of log objects
     def retrieve_log(self, end_time, start_time=None):
         # If the start time is not specified, select 1 day before the end_time
         if not start_time:

@@ -1,8 +1,25 @@
 from .log_level import LOG_LEVELS
 
+### Retrieve app version from YAML file ###
+def _get_app_version() -> str:
+	config_path = "config.yaml"
+
+	try:
+		with open(config_path, "r", encoding="utf-8") as config_file:
+			for line in config_file:
+				stripped = line.strip()
+				if stripped.startswith("version:"):
+					return stripped.split(":", 1)[1].strip().strip('"\'')
+	except (OSError, IndexError):
+		pass
+
+	return "unknown"
+APP_VERSION = _get_app_version()
+
+
 ### DATABASE ###
 # Database version. Used for migrations.
-DATABASE_VERSION = 2 # DO NOT CHANGE UNLESS MIGRATIONS ARE NOT WORKING
+DATABASE_VERSION = 3 # DO NOT CHANGE UNLESS MIGRATIONS ARE NOT WORKING
 
 
 ### ENVIRONMENT ###
