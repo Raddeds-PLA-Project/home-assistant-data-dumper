@@ -4,6 +4,7 @@ from datetime import timedelta
 from util import log
 from util.placeholders import *
 import json
+from time import sleep
 
 
 class HomeAssistantAPI:
@@ -26,12 +27,24 @@ class HomeAssistantAPI:
         self.conntest()
         
     # Tests the API connection to Home Assistant.
+    # TODO: Fails on reboot for some reason
     def conntest(self):
         log.info("Testing connection to Home Assistant...")
-        conntest = self.__request("/")
-        if conntest.status_code != 200:
-            log.error(f"Connection test to Home Assistant failed! Error {conntest.status_code}")
-            raise ConnectionError()
+        count = 0
+        while count < 5:
+            conntest = self.__request("/")
+            if conntest.status_code != 200:
+                if count < 5:
+                    log.error(f"Connection test to Home Assistant failed! Error {conntest.status_code}. Retrying...")
+                    sleep(10)
+                    count += 1
+                    continue
+                else:
+                    log.error(f"Connection test to Home Assistant failed! Error {conntest.status_code}.")
+                    raise ConnectionError()
+            else:
+                # Success!
+                break
         
     # Retrieves a JSON logbook from a specified time range.
     def retrieve_log(self, end_time, start_time=None):

@@ -7,7 +7,7 @@ description: "Dump time-series entity state data from Home Assistant."
 # | ||___ Major feature
 # | |____ Minor release
 # |______ Major release
-version: 0.522_alpha_full_schedule_test
+version: 0.53_alpha_api_fix
 slug: "radded_data_dumper"
 url: https://github.com/RaddedMC/home-assistant-data-dumper
 init: false
