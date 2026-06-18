@@ -7,7 +7,8 @@ from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase, LogEntry
 from hass_api.api import HomeAssistantAPI
 from addon_api import api
-from workers import task_worker, task_scheduler
+from workers import task_worker, task_scheduler, test_task
+import datetime
 
 
 ### Initialize Flask app
@@ -33,6 +34,23 @@ def redirect_index():
 def api_route(subpath):
     return api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
 
+# Tests
+# TODO: Test to create tasks
+@app.route("/task/<data>")
+def worker_test(data):
+    tt = test_task.TestTask(data)
+    worker.add_task(tt)
+    return f"Add test task {data}"
+
+# TODO: Test to schedule tasks
+@app.route("/schedule/<time>/<name>")
+def scheduler_test(time, name):
+    ts = task_scheduler.ScheduleEntry(
+        queue_time = datetime.datetime.fromisoformat(time),
+        task = test_task.TestTask(name)
+    )
+    scheduler.add_schedule_entry(ts)
+    return f"Added schedule entry {name} for {time}"
 
 ### Application startup
 
