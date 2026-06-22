@@ -4,7 +4,8 @@ import threading
 from flask import Flask, redirect, request
 from util import log, placeholders
 from util.placeholders import BUILT_FRONTEND_PATH
-from db.db import EntityHistoryDatabase, LogEntry
+from db.db import EntityHistoryDatabase
+from workers.data_dumper import data_collection_task
 from hass_api.api import HomeAssistantAPI
 from addon_api import api as addon_api
 from workers import task_worker, task_scheduler, test_task
@@ -56,6 +57,12 @@ def scheduler_test(time, name):
 @app.route("/logtest/<timestart>/<timeend>")
 def log_entry_test(timestart, timeend):
     return hass_api.retrieve_log(end_time=datetime.datetime.fromisoformat(timeend), start_time=datetime.datetime.fromisoformat(timestart))
+
+# TODO: Test to force data collection
+@app.route("/forcedata")
+def force_data_collection():
+    worker.add_task(data_collection_task.DataCollectionTask(app_db=app_db, hass_api=hass_api))
+    return "Added a data collection task"
 
 ### Application startup
 

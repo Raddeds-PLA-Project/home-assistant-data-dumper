@@ -6,14 +6,16 @@ import sys
 from .domains.generic import Domain
 import json
 from datetime import datetime
+from time import sleep
 
 class EntityHistoryDatabase:
     def __init__(self):
         ### Initialize SQLite3 database
         # This file goes into the container root. It will be preserved upon uninstall, UNLESS the user selects "remove app data"
         log.info(f"Initializing Database, version {placeholders.DATABASE_VERSION}")
-        self.conn = sqlite3.connect(placeholders.DATABASE_LOCATION)
+        self.conn = sqlite3.connect(placeholders.DATABASE_LOCATION, check_same_thread=False)
         self.cur = self.conn.cursor()
+        self.is_available = True
         
         # Create migration table
         self.__send_query("""
@@ -54,8 +56,26 @@ class EntityHistoryDatabase:
 
         
     def __send_query(self, query):
+        # Database corruption protection: If another process is using the database, block until it becomes available
+        while not self.is_available:
+            log.toomuchinfo("Database is in use by another process.")
+            sleep(1)
+
+        # Database has become available! Lock it now
+        log.toomuchinfo("Locking database")
+        self.is_available = False
+
+        # Send the message
         log.toomuchinfo(f"Sending SQL: {query}")
-        return self.cur.execute(query)
+        result = self.cur.execute(query)
+        self.conn.commit()
+
+        # Unlock the database
+        log.toomuchinfo("Unlocking database")
+        self.is_available = True
+
+        # Return result
+        return result
 
     def insert_complete_entry(self, log_entry):
         # Insert the LogEntry
