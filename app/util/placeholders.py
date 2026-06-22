@@ -1,4 +1,4 @@
-from .log_level import LOG_LEVELS
+import logging
 
 ### Retrieve app version from YAML file ###
 def _get_app_version() -> str:
@@ -32,12 +32,7 @@ BUILT_FRONTEND_PATH = "/frontend/dist"
 # The location for the database file
 DATABASE_LOCATION = "/data/radded_data_dumper.sqlite3"
 
-
 ### LOGGING ###
-# TODO: Change this to Normal before sharing
-# Set your log level
-# - INSANE -- Logs all SQL and API queries. Great for development testing, but may LEAK KEYS!
-# - NORMAL -- Recommended for all users.
-# - SILENT -- Logs only errors and warnings.
-LOG_LEVEL = LOG_LEVELS.INSANE
-
+# The verbosity of the logger.
+# Warning: using DEBUG level may reveal system secrets!
+LOG_LEVEL = logging.DEBUG

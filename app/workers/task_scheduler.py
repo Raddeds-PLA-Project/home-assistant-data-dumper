@@ -65,7 +65,6 @@ class TaskScheduler:
             current_time = datetime.datetime.now()
             for idx, entry in enumerate(self.__entry_list):
                 if current_time > entry.queue_time:
-                    print(f"TESTING: {current_time} > {entry.queue_time}")
                     # Run the task
                     self.__fire_schedule_entry(entry)
                     # Pop it from the list

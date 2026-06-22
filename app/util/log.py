@@ -1,21 +1,17 @@
-from .log_level import LOG_LEVELS
-
 import datetime
+import logging
 from . import placeholders
 
+logging.basicConfig(level=placeholders.LOG_LEVEL, format="radded_data_dumper.%(threadName)s: [%(levelname)s] at %(created)f : [%(msg)s]")
+
 def error(msg):
-    __log(msg, "ERROR")
+    logging.error(msg)
 
 def warning(msg):
-    __log(msg, "WARNING")
+    logging.warning(msg)
 
 def info(msg):
-    if placeholders.LOG_LEVEL <= placeholders.LOG_LEVELS.NORMAL:
-        __log(msg, "INFO")
+    logging.info(msg)
 
 def toomuchinfo(msg):
-    if placeholders.LOG_LEVEL <= placeholders.LOG_LEVELS.INSANE:
-        __log(msg, "TMI")
-
-def __log(msg, status):
-    print(f"radded_data_dumper: [{status}] @ {str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))} : {msg}")
+    logging.debug(msg)
