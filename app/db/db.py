@@ -54,7 +54,7 @@ class EntityHistoryDatabase:
         self.__send_query(LogEntry.create_table())
         log.info("-> Created LogEntry table")
 
-    def get_locked(self):
+    def get_unlocked(self):
         return self.__is_available
         
     def __send_query(self, query):
