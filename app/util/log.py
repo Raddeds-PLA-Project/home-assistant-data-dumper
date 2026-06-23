@@ -2,7 +2,7 @@ import datetime
 import logging
 from . import placeholders
 
-logging.basicConfig(level=placeholders.LOG_LEVEL, format="radded_data_dumper.%(threadName)s: [%(levelname)s] at %(created)f : [%(msg)s]")
+logging.basicConfig(level=placeholders.LOG_LEVEL, format="radded_data_dumper.%(threadName)s: [%(levelname)s] at %(asctime)s : [%(message)s]")
 
 def error(msg):
     logging.error(msg)

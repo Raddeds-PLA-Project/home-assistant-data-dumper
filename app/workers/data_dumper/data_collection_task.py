@@ -32,7 +32,7 @@ class DataCollectionTask(Task):
             self._update_description(f"Dumping from ({checked_range_begin} to {checked_range_end})")
 
         # 3. Log from the beginning of range to now
-        logbook_dump = self.hass_api.retrieve_log(checked_range_begin, checked_range_begin)
+        logbook_dump = self.hass_api.retrieve_log(checked_range_end, checked_range_begin)
         
         # 4. For each entry in the log, convert it into a database entry and save
         entry_count = len(logbook_dump)
@@ -49,9 +49,11 @@ class DataCollectionTask(Task):
 
     @staticmethod
     def create_log_entry_from_json(json_data):
+        # Check for icon
+
         return LogEntry(
-            timestamp = json_data.when,
-            name = json_data.name,
+            timestamp = datetime.fromisoformat(json_data['when']),
+            name = json_data['name'],
             fullJSON = json_data,
-            icon = json_data.icon
+            icon = json_data['icon'] if 'icon' in json_data else None
         )

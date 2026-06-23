@@ -92,12 +92,14 @@ async def run():
     def start_task_worker():
         asyncio.run(worker.start_worker())
     task_worker_thread = threading.Thread(target = start_task_worker, daemon=True)
+    task_worker_thread.name = "Task-Worker-Thread"
     task_worker_thread.start()
     
     # Run Scheduler in a background thread
     def start_scheduler():
         asyncio.run(scheduler.start_scheduler())
     task_scheduler_thread = threading.Thread(target = start_scheduler, daemon=True)
+    task_scheduler_thread.name = "Task-Scheduler-Thread"
     task_scheduler_thread.start()
     
     # Run data collection nightly
