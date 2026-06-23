@@ -15,7 +15,7 @@ class EntityHistoryDatabase:
         log.info(f"Initializing Database, version {placeholders.DATABASE_VERSION}")
         self.conn = sqlite3.connect(placeholders.DATABASE_LOCATION, check_same_thread=False)
         self.cur = self.conn.cursor()
-        self.is_available = True
+        self.__is_available = True
         
         # Create migration table
         self.__send_query("""
@@ -54,16 +54,18 @@ class EntityHistoryDatabase:
         self.__send_query(LogEntry.create_table())
         log.info("-> Created LogEntry table")
 
+    def get_locked(self):
+        return self.__is_available
         
     def __send_query(self, query):
         # Database corruption protection: If another process is using the database, block until it becomes available
-        while not self.is_available:
+        while not self.__is_available:
             log.toomuchinfo("Database is in use by another process.")
             sleep(1)
 
         # Database has become available! Lock it now
         log.toomuchinfo("Locking database")
-        self.is_available = False
+        self.__is_available = False
 
         # Send the message
         log.toomuchinfo(f"Sending SQL: {query}")
@@ -72,7 +74,7 @@ class EntityHistoryDatabase:
 
         # Unlock the database
         log.toomuchinfo("Unlocking database")
-        self.is_available = True
+        self.__is_available = True
 
         # Return result
         return result
@@ -99,6 +101,19 @@ class EntityHistoryDatabase:
 
         log.toomuchinfo(f"Last entry was logged at {result[0]}")
         return datetime.fromisoformat(result[0])
+
+    # Gets the number of entries
+    def get_entry_count(self):
+        result = self.__send_query("""
+        SELECT COUNT(*) FROM EntityHistory;
+        """).fetchone()
+
+        # If there are no entries
+        if result is None:
+            return 0
+        
+        log.toomuchinfo(f"There are currently {result[0]} entries logged")
+        return result[0]
 
 
 class LogEntry:
