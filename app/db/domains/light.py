@@ -7,7 +7,7 @@ class DomainLight(Domain):
 
     # create_table, which is not an object method and will be called once at runtime to retrieve the SQL to create the table.
     @staticmethod
-    def create_table():
+    def create_table_json():
         return ("""
         CREATE TABLE IF NOT EXISTS DomainLightState (
             ID INTEGER PRIMARY KEY,
@@ -18,7 +18,7 @@ class DomainLight(Domain):
         """)
         
     # add_entry, will be called to retrieve the SQL to add an entry.
-    def add_entry(self, state_history_id):
+    def add_entry_json(self, state_history_id):
         return ("""
         INSERT INTO DomainLightState (StateHistoryID, isOn) VALUES (?, ?);
         """, (state_history_id, self.state))
