@@ -11,7 +11,7 @@ class DomainPerson(Domain):
     # create_table, which is not an object method and will be called once at runtime to retrieve the SQL to create the table.
     @staticmethod
     def create_table():
-        return """
+        return ("""
         CREATE TABLE IF NOT EXISTS DomainPersonState (
             ID INTEGER PRIMARY KEY,
             StateHistoryID INTEGER NOT NULL,
@@ -19,14 +19,10 @@ class DomainPerson(Domain):
             IsHome BOOLEAN NOT NULL,
             FOREIGN KEY (StateHistoryID) REFERENCES EntityHistory(ID)
         );
-        """
+        """)
     
     # add_entry, will be called to retrieve the SQL to add an entry.
     def add_entry(self, state_history_id):
-        return f"""
-        INSERT INTO DomainPersonState (StateHistoryID, ZoneName, IsHome) VALUES (
-            {state_history_id},
-            '{self.state}',
-            {self.isHome}
-        );
-        """
+        return ("""
+        INSERT INTO DomainPersonState (StateHistoryID, ZoneName, IsHome) VALUES (?, ?, ?);
+        """, (state_history_id, self.state, self.isHome))

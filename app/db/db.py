@@ -33,9 +33,9 @@ class EntityHistoryDatabase:
         # First time launch
         if local_db_version is None:
             log.info("Detected first time launch. Creating database...")
-            self.__send_query(f"""
-            INSERT INTO DatadumperMigrations (version) VALUES ({placeholders.DATABASE_VERSION});
-            """)
+            self.__send_query("""
+            INSERT INTO DatadumperMigrations (version) VALUES (?);
+            """, (int(placeholders.DATABASE_VERSION), ))
         # Unchanged version
         elif local_db_version == placeholders.DATABASE_VERSION:
             log.info("Database version unchanged, skipping creation.")
@@ -51,13 +51,13 @@ class EntityHistoryDatabase:
 
 
         ### Create top level Entity History table
-        self.__send_query(LogEntry.create_table())
+        self.__send_query(LogEntry.create_table()[0])
         log.info("-> Created LogEntry table")
 
     def get_unlocked(self):
         return self.__is_available
         
-    def __send_query(self, query):
+    def __send_query(self, query, params = None):
         # Database corruption protection: If another process is using the database, block until it becomes available
         while not self.__is_available:
             log.toomuchinfo("Database is in use by another process.")
@@ -69,7 +69,11 @@ class EntityHistoryDatabase:
 
         # Send the message
         log.toomuchinfo(f"Sending SQL: {query}")
-        result = self.cur.execute(query)
+        if not params:
+            result = self.cur.execute(query)
+        else:
+            result = self.cur.execute(query, params)
+        
         self.conn.commit()
 
         # Unlock the database
@@ -81,7 +85,8 @@ class EntityHistoryDatabase:
 
     def insert_complete_entry(self, log_entry):
         # Insert the LogEntry
-        self.__send_query(log_entry.add_entry())
+        entry_data = log_entry.add_entry()
+        self.__send_query(entry_data[0], entry_data[1])
 
         # Commit all queries
         self.conn.commit()
@@ -137,7 +142,7 @@ class LogEntry:
         # Name: Refers to the Name in the Event log. # TODO: Maximum length?
         # fullJSON: The entire JSON of the log entry. # TODO: Maximum length?
         # Icon: MDI ID of icon. Optional.
-        return """
+        return ("""
         CREATE TABLE IF NOT EXISTS EntityHistory (
             ID INTEGER PRIMARY KEY,
             TimeStamp DATETIME NOT NULL,
@@ -145,25 +150,16 @@ class LogEntry:
             FullJSON TEXT NOT NULL,
             Icon TEXT
         );
-        """
+        """)
 
     # Retrieves the SQL to create an entry
     # Adding an actual entry needs to be done through the database, since it needs to reference the ID of this Entry
     def add_entry(self):
         if self.icon:
-            return f"""
-            INSERT INTO EntityHistory (TimeStamp, Name, FullJSON, Icon) VALUES (
-                '{self.timestamp.isoformat()}',
-                '{self.name}',
-                '{json.dumps(self.fullJSON)}',
-                '{self.icon}'
-            );
-            """
+            return ("""
+            INSERT INTO EntityHistory (TimeStamp, Name, FullJSON, Icon) VALUES (?, ?, ?, ?);
+            """, (self.timestamp.isoformat(), self.name, json.dumps(self.fullJSON)))
         else:
-            return f"""
-            INSERT INTO EntityHistory (TimeStamp, Name, FullJSON) VALUES (
-                '{self.timestamp}',
-                '{self.name}',
-                '{json.dumps(self.fullJSON)}'
-            );
-            """
+            return ("""
+            INSERT INTO EntityHistory (TimeStamp, Name, FullJSON) VALUES (?, ?, ?);
+            """, (self.timestamp, self.name, json.dumps(self.fullJSON)))
