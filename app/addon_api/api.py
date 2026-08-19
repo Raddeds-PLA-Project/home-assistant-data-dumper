@@ -6,6 +6,7 @@ from util import log, placeholders
 from .export_db import export_root
 from .worker_info import worker_root
 from .db_info import db_root
+from .run import run_root
 
 # Root entry for the API subpath.
 def api_root(request, app_db, hass_api, worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
@@ -25,6 +26,9 @@ def api_root(request, app_db, hass_api, worker : TaskWorker, scheduler : TaskSch
     # DB
     if subpath.startswith("db/"):
         return db_root(subpath, app_db)
+    # Run tasks
+    if subpath.startswith("run/")
+        return run_root(subpath, scheduler)
 
     # Fallback, no subpath
     if request.path == "/api":
