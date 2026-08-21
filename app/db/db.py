@@ -69,10 +69,11 @@ class EntityHistoryDatabase:
         self.__is_available = False
 
         # Send the message
-        log.toomuchinfo(f"Sending SQL: {query}")
         if not params:
+            log.toomuchinfo(f"Sending SQL: {query}")
             result = self.cur.execute(query)
         else:
+            log.toomuchinfo(f"Sending SQL: {query} | With parameters: {params}")
             result = self.cur.execute(query, params)
         
         self.conn.commit()

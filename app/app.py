@@ -5,11 +5,11 @@ from flask import Flask, redirect, request
 from util import log, placeholders
 from util.placeholders import BUILT_FRONTEND_PATH
 from db.db import EntityHistoryDatabase
-from workers.data_dumper import data_collection_task
+from workers.data_dumper.data_collection_task import DataCollectionTask
 from hass_api.api import HomeAssistantAPI
 from addon_api import api as addon_api
 from workers import task_worker, task_scheduler, test_task
-import datetime
+from datetime import datetime
 
 
 ### Initialize Flask app
@@ -34,35 +34,6 @@ def redirect_index():
 @app.route("/api/<path:subpath>")
 def api_route(subpath):
     return addon_api.api_root(request, app_db, hass_api, worker, scheduler, subpath)
-
-# Tests
-# TODO: Test to create tasks
-@app.route("/task/<data>")
-def worker_test(data):
-    tt = test_task.TestTask(data)
-    worker.add_task(tt)
-    return f"Add test task {data}"
-
-# TODO: Test to schedule tasks
-@app.route("/schedule/<time>/<name>")
-def scheduler_test(time, name):
-    ts = task_scheduler.ScheduleEntry(
-        queue_time = datetime.datetime.fromisoformat(time),
-        task = test_task.TestTask(name)
-    )
-    scheduler.add_schedule_entry(ts)
-    return f"Added schedule entry {name} for {time}"
-
-# TODO: Test to get log entry
-@app.route("/logtest/<timestart>/<timeend>")
-def log_entry_test(timestart, timeend):
-    return hass_api.retrieve_log(end_time=datetime.datetime.fromisoformat(timeend), start_time=datetime.datetime.fromisoformat(timestart))
-
-# TODO: Test to force data collection
-@app.route("/forcedata")
-def force_data_collection():
-    worker.add_task(data_collection_task.DataCollectionTask(app_db=app_db, hass_api=hass_api))
-    return "Added a data collection task"
 
 ### Application startup
 
@@ -103,6 +74,13 @@ async def run():
     task_scheduler_thread.start()
     
     # Run data collection nightly
+    scheduler.add_schedule_entry(
+        task_scheduler.ScheduleEntry(
+            queue_time=datetime.now(),
+            task=DataCollectionTask(app_db, hass_api),
+            daily=True
+        )
+    )
     
 # Prepare task startup
 def main():
