@@ -19,7 +19,7 @@ APP_VERSION = _get_app_version()
 
 ### DATABASE ###
 # Database version. Used for migrations.
-DATABASE_VERSION = 3 # DO NOT CHANGE UNLESS MIGRATIONS ARE NOT WORKING
+DATABASE_VERSION = 1 # DO NOT CHANGE UNLESS MIGRATIONS ARE NOT WORKING
 
 
 ### ENVIRONMENT ###
@@ -35,4 +35,4 @@ DATABASE_LOCATION = "/data/radded_data_dumper.sqlite3"
 ### LOGGING ###
 # The verbosity of the logger.
 # Warning: using DEBUG level may reveal system secrets!
-LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.INFO

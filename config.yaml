@@ -7,7 +7,7 @@ description: "Dump time-series entity state data from Home Assistant."
 # | ||___ Major feature
 # | |____ Minor release
 # |______ Major release
-version: 0.9011_beta_final_refinements
+version: 1.0
 slug: "radded_data_dumper"
 url: https://github.com/RaddedMC/home-assistant-data-dumper
 init: false
@@ -26,3 +26,5 @@ startup: services
 ports:
   8099/tcp: 8099
 webui: "http://[HOST]:[PORT:8099]/index.html"
+# TODO: App icon (frontend favicon, App Store icon)
+# TODO: Changelog

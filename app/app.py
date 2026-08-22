@@ -8,7 +8,7 @@ from db.db import EntityHistoryDatabase
 from workers.data_dumper.data_collection_task import DataCollectionTask
 from hass_api.api import HomeAssistantAPI
 from addon_api import api as addon_api
-from workers import task_worker, task_scheduler, test_task
+from workers import task_worker, task_scheduler
 from datetime import datetime
 
 

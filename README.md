@@ -7,7 +7,7 @@ Unlike Home Assistant's official data collection, this addon will extend the dat
 It will also perform serialization of the data, enabling easy filtering.
 I will use this repository for training Machine Learning models in future work.
 
-[See the Wiki for more information](../../wiki)
+[See the Wiki for more information](https://github.com/Raddeds-PLA-Project/home-assistant-data-dumper/wiki)
 
 
 ## Usage
