@@ -89,8 +89,7 @@ def main():
         # Start background workers
         asyncio.run(run())
         # Run Flask in the foreground
-        app.run(host="0.0.0.0", port=8099, debug=True, use_reloader=False) # TODO: Debug probably isn't the best for production!
-        # TODO: Make port customizable in HA Settings
+        app.run(host="0.0.0.0", port=8099, debug=False, use_reloader=False)
     except KeyboardInterrupt:
         # TODO: Log the task that's shutting down
         log.info("Interrupt signal recieved! Shutting down...")

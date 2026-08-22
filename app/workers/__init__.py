@@ -1,4 +1,3 @@
-from . import task_worker, task_scheduler, test_task, data_dumper
+from . import task_worker, task_scheduler, data_dumper
 
-__all__ = ["task_worker","task_scheduler", "test_task", "data_dumper"]
-# TODO: Remove refs to test file
+__all__ = ["task_worker","task_scheduler", "data_dumper"]

@@ -34,7 +34,7 @@ class TaskScheduler:
         # Add to list
         self.__entry_list.append(entry)
         # Log scheduled entry
-        log.info(f"Scheduled task {entry.task.type} {entry.task.title} will run at {entry.queue_time.isoformat()}") # TODO: Include the date and time it was scheduled
+        log.info(f"Scheduled task {entry.task.type} {entry.task.title} will run at {entry.queue_time.isoformat()}")
 
     # Adding the scheduled task to the task worker instead of running it here means that a long blocking task will not affect the schedule
     def __fire_schedule_entry(self, entry: ScheduleEntry):

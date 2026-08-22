@@ -20,7 +20,7 @@ class LogEntry:
         # ID: A unique identifier for the particular state change.
         # TimeStamp: The date and time that the event occurred. UTC timezone.
         # Name: Refers to the Name in the Event log. # TODO: Maximum length?
-        # fullJSON: The entire JSON of the log entry. # TODO: Maximum length?
+        # fullJSON: The entire JSON of the log entry.
         # Icon: MDI ID of icon. Optional.
         return ("""
         CREATE TABLE IF NOT EXISTS EntityHistory (
