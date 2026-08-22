@@ -12,7 +12,6 @@ slug: "radded_data_dumper"
 url: https://github.com/RaddedMC/home-assistant-data-dumper
 init: false
 homeassistant_api: true
-# TODO: Get panel for web ui working!
 ingress: true
 ingress_port: 8099
 panel_icon: "mdi:emoticon-poop"
