@@ -27,7 +27,7 @@ scheduler = None
 # Frontend
 @app.route("/")
 def redirect_index():
-    return redirect("/index.html")
+    return redirect("index.html")
 
 # Redirect to addon_api
 @app.route("/api", defaults={"subpath": ""})

@@ -1,12 +1,12 @@
 from .task_worker import Task, TaskWorker
-import datetime
+from datetime import datetime, timedelta
 from util import log
 import asyncio
 
 
 # A Task Schedule entry
 class ScheduleEntry:
-    def __init__(self, queue_time: datetime.datetime, task: Task, daily = False):
+    def __init__(self, queue_time: datetime, task: Task, daily = False):
         self.queue_time = queue_time # The time to run this task.
         self.task = task # The task to run
         self.daily = daily # Run daily? (Will automatically reschedule for the same time next day, in perpetuity)
@@ -47,7 +47,7 @@ class TaskScheduler:
             log.info(f"Rescheduling task {entry.task.type} {entry.task.title} for tomorrow...")
             self.add_schedule_entry(
                 ScheduleEntry(
-                    queue_at = entry.queue_time + datetime.timedelta(days=1),
+                    queue_time = entry.queue_time + timedelta(days=1),
                     task = entry.task,
                     daily = True
                 )
@@ -62,14 +62,13 @@ class TaskScheduler:
         log.info("Task scheduler started")
         while not self.__shutdown:
             # For all tasks, if the task time is later than the current time, run it and pop it from the list
-            current_time = datetime.datetime.now()
+            current_time = datetime.now()
             for idx, entry in enumerate(self.__entry_list):
                 if current_time > entry.queue_time:
                     # Run the task
                     self.__fire_schedule_entry(entry)
                     # Pop it from the list
                     self.__entry_list.pop(idx)
-                    pass
             await asyncio.sleep(1) # Sleep for 1 second, we will sync tasks to that
         log.info("Shutdown schedule recieved! Terminating scheduler")
         
