@@ -8,6 +8,7 @@ import json
 from datetime import datetime
 from time import sleep
 from .log_entry import LogEntry
+from migrations import migrations
 
 class EntityHistoryDatabase:
     def __init__(self):
@@ -37,23 +38,31 @@ class EntityHistoryDatabase:
             self.__send_query("""
             INSERT INTO DatadumperMigrations (version) VALUES (?);
             """, (int(placeholders.DATABASE_VERSION), ))
+            
         # Unchanged version
         elif local_db_version == placeholders.DATABASE_VERSION:
             log.info("Database version unchanged, skipping creation.")
             return
+        
         # Existing database is newer than application, fail
         elif local_db_version > placeholders.DATABASE_VERSION:
-            log.error(f"Database is newer than application! Installed: {local_db_version}, Expected: {placeholders.DATABASE_VERSION}")
-            sys.exit(1)
-        # Existing database is older than application, perform migration
+            log.warning(f"Database is newer than supported application version! Installed: {local_db_version}, Expected: {placeholders.DATABASE_VERSION}. Please update the application before continuing.")
+            sys.exit(0)
+            
+        # Existing database is older than current, perform migration
         elif local_db_version < placeholders.DATABASE_VERSION:
-            log.error(f"Database is older than application! Please perform a migration before continuing. Installed: {local_db_version}, Expected: {placeholders.DATABASE_VERSION}")
-            sys.exit(1)
+            log.error(f"Database is out of date! Checking if it can be migrated. Installed: {local_db_version}, Expected: {placeholders.DATABASE_VERSION}")
+            migrations.check_migration(local_db_version, placeholders.DATABASE_VERSION, self)
 
 
         ### Create top level Entity History table
         self.__send_query(LogEntry.create_table_json())
         log.info("-> Created LogEntry table")
+        
+        ### Create top level Settings table
+        self.__send_query(LogEntry.create_table_json())
+        log.info("-> Created Settings table")
+        
 
     def get_unlocked(self):
         return self.__is_available

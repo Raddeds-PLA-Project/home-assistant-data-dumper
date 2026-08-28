@@ -27,7 +27,7 @@ class LogEntry:
             ID INTEGER PRIMARY KEY,
             TimeStamp DATETIME NOT NULL,
             Name TEXT NOT NULL,
-            FullJSON TEXT NOT NULL,
+            FullJSON JSON NOT NULL,
             Icon TEXT
         );
         """)
