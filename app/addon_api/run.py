@@ -1,11 +1,11 @@
-from db.db import EntityHistoryDatabase
+from db.db import ApplicationDatabaseManager
 from hass_api.api import HomeAssistantAPI
 from workers.task_scheduler import TaskScheduler, ScheduleEntry
 from workers.data_dumper.data_collection_task import DataCollectionTask
 from datetime import datetime, timedelta
 from flask import abort
 
-def run_root(subpath, scheduler : TaskScheduler, app_db : EntityHistoryDatabase, hass_api : HomeAssistantAPI):
+def run_root(subpath, scheduler : TaskScheduler, app_db : ApplicationDatabaseManager, hass_api : HomeAssistantAPI):
     db_subpath = subpath[len("run"):].lstrip("/") if subpath.startswith("run") else ""
     
     # Run data collection right now

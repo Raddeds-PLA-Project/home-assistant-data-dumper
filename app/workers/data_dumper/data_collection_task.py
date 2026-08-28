@@ -1,11 +1,12 @@
 from workers.task_worker import Task, TaskState
-from db.db import EntityHistoryDatabase, LogEntry
+from db.db import ApplicationDatabaseManager
+from db.entity_history.entity_history_db import LogEntry
 from util import log
 from hass_api.api import HomeAssistantAPI
 from datetime import datetime, timedelta
 
 class DataCollectionTask(Task):
-    def __init__(self, app_db: EntityHistoryDatabase, hass_api : HomeAssistantAPI):
+    def __init__(self, app_db: ApplicationDatabaseManager, hass_api : HomeAssistantAPI):
         self.app_db = app_db
         self.hass_api = hass_api
         super().__init__("Logbook API Collection Task", "Logs data from the Home Assistant Logbook API.")
@@ -17,7 +18,7 @@ class DataCollectionTask(Task):
         self._update_description("Determining timerange to log")
         
         # 1. Find last time data was logged
-        checked_range_begin = self.app_db.time_of_newest_entry()
+        checked_range_begin = self.app_db.entity_db.time_of_newest_entry()
         logbook_dump = []
         checked_range_end = datetime.now()
         
@@ -38,7 +39,7 @@ class DataCollectionTask(Task):
         entry_count = len(logbook_dump)
         written_entries = 0
         for entry in logbook_dump:
-            self.app_db.insert_complete_entry(DataCollectionTask.create_log_entry_from_json(entry))
+            self.app_db.entity_db.insert_complete_entry(DataCollectionTask.create_log_entry_from_json(entry))
             written_entries += 1
             self._update_description(f"Dump completed! Writing {written_entries}/{entry_count} entries to database")
 
@@ -50,7 +51,6 @@ class DataCollectionTask(Task):
     @staticmethod
     def create_log_entry_from_json(json_data):
         # Check for icon
-
         return LogEntry(
             timestamp = datetime.fromisoformat(json_data['when']),
             name = json_data['name'],

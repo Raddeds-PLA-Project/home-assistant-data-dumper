@@ -1,7 +1,7 @@
-from db import EntityHistoryDatabase
+from db import ApplicationDatabaseManager
 from util import log
 
-def check_migration(old_version: int, new_version: int, db: EntityHistoryDatabase):
+def check_migration(old_version: int, new_version: int, db: ApplicationDatabaseManager):
     # Upgrade from version 1 to version 2.
     # The main change here was creating settings, no changes are needed here 
     if old_version == 1:
@@ -13,4 +13,3 @@ def check_migration(old_version: int, new_version: int, db: EntityHistoryDatabas
         pass
     
     log.info("Migration completed!")
-        

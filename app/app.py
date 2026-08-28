@@ -4,7 +4,7 @@ import threading
 from flask import Flask, redirect, request
 from util import log, placeholders
 from util.placeholders import BUILT_FRONTEND_PATH
-from db.db import EntityHistoryDatabase
+from db.db import ApplicationDatabaseManager
 from workers.data_dumper.data_collection_task import DataCollectionTask
 from hass_api.api import HomeAssistantAPI
 from addon_api import api as addon_api
@@ -43,7 +43,7 @@ def setup():
 
     # Initialize database
     global app_db
-    app_db = EntityHistoryDatabase()
+    app_db = ApplicationDatabaseManager()
 
     # Initialize API connection
     global hass_api

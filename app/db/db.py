@@ -1,16 +1,15 @@
 import sqlite3
 from util import log
 from util import placeholders
-from . import domains
 import sys
-from .domains.generic import Domain
 import json
 from datetime import datetime
 from time import sleep
-from .log_entry import LogEntry
-from migrations import migrations
+from .entity_history import entity_history_db
+from .migrations import migrations
+from .settings import settings_db
 
-class EntityHistoryDatabase:
+class ApplicationDatabaseManager:
     def __init__(self):
         ### Initialize SQLite3 database
         # This file goes into the container root. It will be preserved upon uninstall, UNLESS the user selects "remove app data"
@@ -53,19 +52,13 @@ class EntityHistoryDatabase:
         elif local_db_version < placeholders.DATABASE_VERSION:
             log.error(f"Database is out of date! Checking if it can be migrated. Installed: {local_db_version}, Expected: {placeholders.DATABASE_VERSION}")
             migrations.check_migration(local_db_version, placeholders.DATABASE_VERSION, self)
-
-
-        ### Create top level Entity History table
-        self.__send_query(LogEntry.create_table_json())
-        log.info("-> Created LogEntry table")
-        
-        ### Create top level Settings table
-        self.__send_query(LogEntry.create_table_json())
-        log.info("-> Created Settings table")
-        
-
+            
+        ### Create top level tables
+        self.entity_db = entity_history_db.EntityHistoryDatabase(self)
+        self.settings_db = settings_db.SettingsDatabase(self)
+            
     def get_unlocked(self):
-        return self.__is_available
+            return self.__is_available
         
     def __send_query(self, query, params = None):
         # Database corruption protection: If another process is using the database, block until it becomes available
@@ -93,57 +86,3 @@ class EntityHistoryDatabase:
 
         # Return result
         return result
-
-    def insert_complete_entry(self, log_entry: LogEntry):
-        # Insert the LogEntry
-        entry_data = log_entry.add_entry_json()
-        self.__send_query(entry_data[0], entry_data[1])
-
-        # Commit all queries
-        self.conn.commit()
-        
-    # Gets the time of the newest entry
-    def time_of_newest_entry(self):
-        result = self.__send_query("""
-        SELECT TimeStamp FROM EntityHistory
-        ORDER BY TimeStamp DESC
-        LIMIT 1;
-        """).fetchone()
-
-        # If there are no entries
-        if result is None:
-            log.toomuchinfo("No entries logged!")
-            return None
-
-        log.toomuchinfo(f"Last entry was logged at {result[0]}")
-        return datetime.fromisoformat(result[0])
-    
-    # Gets the time of the oldest entry
-    def time_of_oldest_entry(self):
-        result = self.__send_query("""
-        SELECT TimeStamp FROM EntityHistory
-        ORDER BY TimeStamp
-        LIMIT 1;
-        """).fetchone()
-
-        # If there are no entries
-        if result is None:
-            log.toomuchinfo("No entries logged!")
-            return None
-
-        log.toomuchinfo(f"Oldest entry was logged at {result[0]}")
-        return datetime.fromisoformat(result[0])
-
-    # Gets the number of entries
-    def get_entry_count(self):
-        result = self.__send_query("""
-        SELECT COUNT(*) FROM EntityHistory;
-        """).fetchone()
-
-        # If there are no entries
-        if result is None:
-            return 0
-        
-        log.toomuchinfo(f"There are currently {result[0]} entries logged")
-        return result[0]
-

@@ -2,7 +2,7 @@ from flask import abort
 from workers.task_worker import TaskWorker
 from workers.task_scheduler import TaskScheduler
 from util import log, placeholders
-from db.db import EntityHistoryDatabase
+from db.db import ApplicationDatabaseManager
 from hass_api.api import HomeAssistantAPI
 
 from .export_db import export_root
@@ -12,7 +12,7 @@ from .run import run_root
 from .info import info_root
 
 # Root entry for the API subpath.
-def api_root(request, app_db: EntityHistoryDatabase, hass_api: HomeAssistantAPI, worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
+def api_root(request, app_db: ApplicationDatabaseManager, hass_api: HomeAssistantAPI, worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
 
     # Manage the workers
     if subpath.startswith("worker/"):
