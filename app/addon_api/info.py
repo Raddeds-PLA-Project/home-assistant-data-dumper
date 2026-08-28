@@ -4,7 +4,7 @@ from util import placeholders
 
 # Info root
 def info_root(subpath, hass_api: HomeAssistantAPI):
-    info_subpath = subpath[len("run"):].lstrip("/") if subpath.startswith("run") else ""
+    info_subpath = subpath[len("info"):].lstrip("/") if subpath.startswith("info") else ""
     
     # Return version info of the app
     if info_subpath == "version":

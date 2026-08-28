@@ -26,6 +26,7 @@ class HomeAssistantAPI:
         # Test connection
         self.conntest()
         
+        
     # Tests the API connection to Home Assistant.
     def conntest(self):
         log.info("Testing connection to Home Assistant...")
@@ -44,6 +45,7 @@ class HomeAssistantAPI:
             else:
                 # Success!
                 break
+        
         
     # Retrieves a JSON logbook from a specified time range.
     # Formatted as a List of Log objects. See previous notes for the structure of log objects
@@ -66,7 +68,6 @@ class HomeAssistantAPI:
             
     # Retrieves the user's list of configured entities.
     def retrieve_entities(self):
-        
         # Make the request
         log.info("Retrieving entity list")
         path = "/states"
@@ -103,6 +104,7 @@ class HomeAssistantAPI:
                 pass
         
         return result
+
 
     # Make an API request. This function call allows extra things to be ran when making API calls like the logger.
     def __request(self, path):

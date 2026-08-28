@@ -33,10 +33,6 @@ def api_root(request, app_db: EntityHistoryDatabase, hass_api: HomeAssistantAPI,
     # General info
     if subpath.startswith("info/"):
         return info_root(subpath, hass_api)
-    # Legacy route for App version
-    if subpath == "versions":
-        log.warning("The /api/versions route has been deprecated. Please use /api/info/versions in the future!")
-        return info_root("versions", hass_api)
 
 
     # Fallback, no subpath
