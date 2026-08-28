@@ -77,12 +77,12 @@ class HomeAssistantAPI:
             states = json.loads(request.content)
         except json.decoder.JSONDecodeError:
             log.error("Recieved invalid JSON during entity retrieval.")
-            return []
+            # TODO: How do I respond with an error here
         
         # Bit of error checking
         if not isinstance(states, list):
             log.error("Recieved an invalid entity list during entity retrieval.")
-            return []
+            # TODO: How do I respond with an error here
 
         # Return the list of entity IDs, along with their friendly name, and icon or entity picture if available
         # If there is neither, the icon can be inferred from the entity type
@@ -102,13 +102,28 @@ class HomeAssistantAPI:
                 item['entity_picture'] = state['attributes']['entity_picture']
             except KeyError:
                 pass
+            result.append(item)
         
         return result
+    
+    # Retrieves an entity icon after checking if it is in the list
+    # This needs to be proxied through the addon since the supervisor API requires authentication
+    def retrieve_entity_icon(self, icon_path):
+        log.info(f"Retrieving entity icon {icon_path}")
+        entities = self.retrieve_entities()
+        # Create list of just the entity_pictures
+        entity_pictures = [i['entity_picture'] for i in entities if 'entity_picture' in i]
+        
+        if icon_path in entity_pictures:
+            # Return the picture
+            return self.__request(icon_path[4:])
+        else:
+            log.warning("User tried to request an icon that doesn't exist.")
 
 
     # Make an API request. This function call allows extra things to be ran when making API calls like the logger.
     def __request(self, path):
-        log.toomuchinfo(f"Sending API request: {path}")
+        log.toomuchinfo(f"Sending Home Assistant API request: {path}")
         
         # Make the request with token
         request = requests.get(
@@ -125,9 +140,9 @@ class HomeAssistantAPI:
         except AttributeError:
             log.toomuchinfo(f"Response: {request.status_code}, No body")
         
-        # Raise warning if response code is not 200 ok
+        # Raise error if response code is not 200 ok
         if request.status_code != 200:
-            log.warning(f"Request to Home Assistant failed! Error {request.status_code}")
+            log.error(f"Request to Home Assistant failed! Error {request.status_code}")
             # raise ConnectionError()
             
         return request

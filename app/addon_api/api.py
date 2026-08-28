@@ -16,7 +16,7 @@ def api_root(request, app_db: EntityHistoryDatabase, hass_api: HomeAssistantAPI,
 
     # Manage the workers
     if subpath.startswith("worker/"):
-        return worker_root(request, worker, scheduler, subpath)
+        return worker_root(worker, scheduler, subpath)
     
     # Export data
     if subpath.startswith("export/"):
@@ -32,7 +32,7 @@ def api_root(request, app_db: EntityHistoryDatabase, hass_api: HomeAssistantAPI,
     
     # General info
     if subpath.startswith("info/"):
-        return info_root(subpath, hass_api)
+        return info_root(request, subpath, hass_api)
 
 
     # Fallback, no subpath

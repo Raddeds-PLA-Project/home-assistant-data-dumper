@@ -19,5 +19,8 @@ COPY config.yaml /
 COPY run.sh /
 RUN chmod a+x /run.sh
 
+# Prepare server tempfile
+RUN mkdir /tmp/radded
+
 # Run
 CMD /run.sh

@@ -4,7 +4,7 @@ from workers.task_worker import TaskWorker
 
 # API entries for the Task Worker and Task Scheduler
 # This will be called for all API routes that start with "worker"
-def worker_root(request, worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
+def worker_root(worker : TaskWorker, scheduler : TaskScheduler, subpath=""):
     worker_subpath = subpath[len("worker"):].lstrip("/") if subpath.startswith("worker") else ""
     
     
