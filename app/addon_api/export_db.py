@@ -1,7 +1,7 @@
 from flask import send_file, abort
 from util import placeholders, log
 
-# Export hook
+# Export root
 def export_root(subpath=""):
     export_subpath = subpath[len("export"):].lstrip("/") if subpath.startswith("export") else ""
 

@@ -1,0 +1,1240 @@
+[
+    {
+        "entity_id": "update.home_assistant_supervisor_update",
+        "state": "off",
+        "attributes": {
+            "auto_update": true,
+            "display_precision": 0,
+            "installed_version": "2026.08.0",
+            "in_progress": false,
+            "latest_version": "2026.08.0",
+            "release_summary": null,
+            "release_url": "https://github.com/home-assistant/supervisor/releases/tag/2026.08.0",
+            "skipped_version": null,
+            "title": "Home Assistant Supervisor",
+            "update_percentage": null,
+            "entity_picture": "/api/brands/integration/hassio/icon.png?placeholder=no",
+            "friendly_name": "Home Assistant Supervisor Update",
+            "supported_features": 5
+        },
+        "last_changed": "2026-08-28T14:52:19.478453+00:00",
+        "last_reported": "2026-08-28T14:52:19.478453+00:00",
+        "last_updated": "2026-08-28T14:52:19.478453+00:00",
+        "context": {
+            "id": "01M14DPZMPY86SPE06VPSPQ3RY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.home_assistant_core_update",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "2026.6.0",
+            "in_progress": false,
+            "latest_version": "2026.8.3",
+            "release_summary": null,
+            "release_url": "https://www.home-assistant.io/latest-release-notes/",
+            "skipped_version": null,
+            "title": "Home Assistant Core",
+            "update_percentage": null,
+            "entity_picture": "/api/brands/integration/homeassistant/icon.png?placeholder=no",
+            "friendly_name": "Home Assistant Core Update",
+            "supported_features": 15
+        },
+        "last_changed": "2026-08-28T14:52:19.479016+00:00",
+        "last_reported": "2026-08-28T14:52:19.479016+00:00",
+        "last_updated": "2026-08-28T14:52:19.479016+00:00",
+        "context": {
+            "id": "01M14DPZMQKPKY83D1JD0RMPNE",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.home_assistant_operating_system_update",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "17.3",
+            "in_progress": false,
+            "latest_version": "18.2",
+            "release_summary": null,
+            "release_url": "https://github.com/home-assistant/operating-system/releases/tag/18.2",
+            "skipped_version": null,
+            "title": "Home Assistant Operating System",
+            "update_percentage": null,
+            "entity_picture": "/api/brands/integration/homeassistant/icon.png?placeholder=no",
+            "friendly_name": "Home Assistant Operating System Update",
+            "supported_features": 11
+        },
+        "last_changed": "2026-08-28T14:52:19.479439+00:00",
+        "last_reported": "2026-08-28T14:52:19.479439+00:00",
+        "last_updated": "2026-08-28T14:52:19.479439+00:00",
+        "context": {
+            "id": "01M14DPZMQM78R4Y1Z6FEMPFPT",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.matter_server_update",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "8.5.0",
+            "in_progress": false,
+            "latest_version": "9.2.0",
+            "release_summary": null,
+            "release_url": null,
+            "skipped_version": null,
+            "title": "Matter Server",
+            "update_percentage": null,
+            "entity_picture": "/api/hassio/addons/core_matter_server/icon",
+            "friendly_name": "Matter Server Update",
+            "supported_features": 29
+        },
+        "last_changed": "2026-08-28T14:52:19.480299+00:00",
+        "last_reported": "2026-08-28T14:52:19.480299+00:00",
+        "last_updated": "2026-08-28T14:52:19.480299+00:00",
+        "context": {
+            "id": "01M14DPZMRJHYGE9SZXQA88TPQ",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.advanced_ssh_web_terminal_update",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "23.0.9",
+            "in_progress": false,
+            "latest_version": "24.1.3",
+            "release_summary": null,
+            "release_url": null,
+            "skipped_version": null,
+            "title": "Advanced SSH & Web Terminal",
+            "update_percentage": null,
+            "entity_picture": "/api/hassio/addons/a0d7b954_ssh/icon",
+            "friendly_name": "Advanced SSH & Web Terminal Update",
+            "supported_features": 29
+        },
+        "last_changed": "2026-08-28T14:52:19.480538+00:00",
+        "last_reported": "2026-08-28T15:07:19.336994+00:00",
+        "last_updated": "2026-08-28T15:07:19.336994+00:00",
+        "context": {
+            "id": "01M14EJED8SGRPGTVM9ZZY2YQH",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.file_editor_update",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "6.0.0",
+            "in_progress": false,
+            "latest_version": "6.1.0",
+            "release_summary": null,
+            "release_url": null,
+            "skipped_version": null,
+            "title": "File editor",
+            "update_percentage": null,
+            "entity_picture": "/api/hassio/addons/core_configurator/icon",
+            "friendly_name": "File editor Update",
+            "supported_features": 29
+        },
+        "last_changed": "2026-08-28T14:52:19.480795+00:00",
+        "last_reported": "2026-08-28T14:52:19.480795+00:00",
+        "last_updated": "2026-08-28T14:52:19.480795+00:00",
+        "context": {
+            "id": "01M14DPZMRQY7JAGZR02Y94JC3",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.radded_s_home_assistant_data_dumper_update",
+        "state": "off",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "1.0101_dev_entity_blacklist",
+            "in_progress": false,
+            "latest_version": "1.0101_dev_entity_blacklist",
+            "release_summary": null,
+            "release_url": null,
+            "skipped_version": null,
+            "title": "Radded's Home Assistant Data Dumper",
+            "update_percentage": null,
+            "friendly_name": "Radded's Home Assistant Data Dumper Update",
+            "supported_features": 29
+        },
+        "last_changed": "2026-08-28T14:52:19.481043+00:00",
+        "last_reported": "2026-08-28T15:07:19.337135+00:00",
+        "last_updated": "2026-08-28T15:07:19.337135+00:00",
+        "context": {
+            "id": "01M14EJED9END7BAE27S70BF8E",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "conversation.home_assistant",
+        "state": "unknown",
+        "attributes": {
+            "friendly_name": "Home Assistant",
+            "supported_features": 1
+        },
+        "last_changed": "2026-08-28T14:52:20.451279+00:00",
+        "last_reported": "2026-08-28T14:52:20.451279+00:00",
+        "last_updated": "2026-08-28T14:52:20.451279+00:00",
+        "context": {
+            "id": "01M14DQ0K31JCGVZ8RBGSKP2VC",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "event.backup_automatic_backup",
+        "state": "unknown",
+        "attributes": {
+            "event_types": [
+                "completed",
+                "failed",
+                "in_progress"
+            ],
+            "event_type": null,
+            "friendly_name": "Backup Automatic backup"
+        },
+        "last_changed": "2026-08-28T14:52:20.686795+00:00",
+        "last_reported": "2026-08-28T14:52:20.686795+00:00",
+        "last_updated": "2026-08-28T14:52:20.686795+00:00",
+        "context": {
+            "id": "01M14DQ0TE9FQDD6GP38JGG8B7",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.backup_backup_manager_state",
+        "state": "idle",
+        "attributes": {
+            "options": [
+                "idle",
+                "create_backup",
+                "blocked",
+                "receive_backup",
+                "restore_backup"
+            ],
+            "device_class": "enum",
+            "friendly_name": "Backup Backup Manager state"
+        },
+        "last_changed": "2026-08-28T14:52:30.619568+00:00",
+        "last_reported": "2026-08-28T14:52:30.619568+00:00",
+        "last_updated": "2026-08-28T14:52:30.619568+00:00",
+        "context": {
+            "id": "01M14DQAGV8FP95NSZ474REPZY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.backup_next_scheduled_automatic_backup",
+        "state": "unknown",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Backup Next scheduled automatic backup"
+        },
+        "last_changed": "2026-08-28T14:52:20.687639+00:00",
+        "last_reported": "2026-08-28T14:52:30.619658+00:00",
+        "last_updated": "2026-08-28T14:52:20.687639+00:00",
+        "context": {
+            "id": "01M14DQ0TFQ14RN9NBQZ06F12W",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.backup_last_successful_automatic_backup",
+        "state": "unknown",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Backup Last successful automatic backup"
+        },
+        "last_changed": "2026-08-28T14:52:20.687826+00:00",
+        "last_reported": "2026-08-28T14:52:30.619676+00:00",
+        "last_updated": "2026-08-28T14:52:20.687826+00:00",
+        "context": {
+            "id": "01M14DQ0TFSJS4VM7Z0SGWP9J1",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.backup_last_attempted_automatic_backup",
+        "state": "unknown",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Backup Last attempted automatic backup"
+        },
+        "last_changed": "2026-08-28T14:52:20.688020+00:00",
+        "last_reported": "2026-08-28T14:52:30.619696+00:00",
+        "last_updated": "2026-08-28T14:52:20.688020+00:00",
+        "context": {
+            "id": "01M14DQ0TGXYPB4ZWRT7KCFN86",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "zone.home",
+        "state": "0",
+        "attributes": {
+            "latitude": 52.3731339,
+            "longitude": 4.8903147,
+            "radius": 100,
+            "passive": false,
+            "persons": [],
+            "editable": true,
+            "icon": "mdi:home",
+            "friendly_name": "Home"
+        },
+        "last_changed": "2026-08-28T14:52:20.960467+00:00",
+        "last_reported": "2026-08-28T14:52:20.960467+00:00",
+        "last_updated": "2026-08-28T14:52:20.960467+00:00",
+        "context": {
+            "id": "01M14DQ130SH9GQTXKVXKXKMGY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "person.radded",
+        "state": "unknown",
+        "attributes": {
+            "editable": true,
+            "id": "radded",
+            "device_trackers": [],
+            "in_zones": [],
+            "user_id": "36882a44fb9e41bc938dffa57257f7b1",
+            "friendly_name": "radded"
+        },
+        "last_changed": "2026-08-28T14:52:21.012379+00:00",
+        "last_reported": "2026-08-28T14:52:30.611047+00:00",
+        "last_updated": "2026-08-28T14:52:30.611047+00:00",
+        "context": {
+            "id": "01M14DQAGKAH4DWSNRVQWXWD5C",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sun.sun",
+        "state": "above_horizon",
+        "attributes": {
+            "next_dawn": "2026-08-29T04:09:55.410514+00:00",
+            "next_dusk": "2026-08-28T19:13:56.359341+00:00",
+            "next_midnight": "2026-08-28T23:41:24+00:00",
+            "next_noon": "2026-08-29T11:41:32+00:00",
+            "next_rising": "2026-08-29T04:46:45.670400+00:00",
+            "next_setting": "2026-08-28T18:37:09.870947+00:00",
+            "elevation": 20.13,
+            "azimuth": 259.31,
+            "rising": false,
+            "friendly_name": "Sun"
+        },
+        "last_changed": "2026-08-28T14:52:24.748026+00:00",
+        "last_reported": "2026-08-28T16:19:05.150621+00:00",
+        "last_updated": "2026-08-28T16:19:03.318665+00:00",
+        "context": {
+            "id": "01M14JNSGP9SYRX0TREEMX5Q85",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_dawn",
+        "state": "2026-08-29T04:09:55+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next dawn"
+        },
+        "last_changed": "2026-08-28T14:52:24.748982+00:00",
+        "last_reported": "2026-08-28T14:52:24.748982+00:00",
+        "last_updated": "2026-08-28T14:52:24.748982+00:00",
+        "context": {
+            "id": "01M14DQ4SCZNSW0FDYM3K2NYHT",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_dusk",
+        "state": "2026-08-28T19:13:56+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next dusk"
+        },
+        "last_changed": "2026-08-28T14:52:24.749202+00:00",
+        "last_reported": "2026-08-28T14:52:24.749202+00:00",
+        "last_updated": "2026-08-28T14:52:24.749202+00:00",
+        "context": {
+            "id": "01M14DQ4SDJDZH6VPNB7G150W3",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_midnight",
+        "state": "2026-08-28T23:41:24+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next midnight"
+        },
+        "last_changed": "2026-08-28T14:52:24.749378+00:00",
+        "last_reported": "2026-08-28T14:52:24.749378+00:00",
+        "last_updated": "2026-08-28T14:52:24.749378+00:00",
+        "context": {
+            "id": "01M14DQ4SDTNH8Q47N3WHKSJEH",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_noon",
+        "state": "2026-08-29T11:41:32+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next noon"
+        },
+        "last_changed": "2026-08-28T14:52:24.749567+00:00",
+        "last_reported": "2026-08-28T14:52:24.749567+00:00",
+        "last_updated": "2026-08-28T14:52:24.749567+00:00",
+        "context": {
+            "id": "01M14DQ4SD8CQPKPA4V9AYQH4X",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_rising",
+        "state": "2026-08-29T04:46:45+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next rising"
+        },
+        "last_changed": "2026-08-28T14:52:24.749746+00:00",
+        "last_reported": "2026-08-28T14:52:24.749746+00:00",
+        "last_updated": "2026-08-28T14:52:24.749746+00:00",
+        "context": {
+            "id": "01M14DQ4SDJH8WNFS2FP2HQBWY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.sun_next_setting",
+        "state": "2026-08-28T18:37:09+00:00",
+        "attributes": {
+            "device_class": "timestamp",
+            "friendly_name": "Sun Next setting"
+        },
+        "last_changed": "2026-08-28T14:52:24.750576+00:00",
+        "last_reported": "2026-08-28T14:52:24.750576+00:00",
+        "last_updated": "2026-08-28T14:52:24.750576+00:00",
+        "context": {
+            "id": "01M14DQ4SEFXN5XQCW7AM9X4QQ",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "tts.google_translate_en_com",
+        "state": "unknown",
+        "attributes": {
+            "friendly_name": "Google Translate en com"
+        },
+        "last_changed": "2026-08-28T14:52:25.046029+00:00",
+        "last_reported": "2026-08-28T14:52:25.046029+00:00",
+        "last_updated": "2026-08-28T14:52:25.046029+00:00",
+        "context": {
+            "id": "01M14DQ52PEX4VPFBCKW6Z0S0W",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "todo.shopping_list",
+        "state": "0",
+        "attributes": {
+            "friendly_name": "Shopping List",
+            "supported_features": 15
+        },
+        "last_changed": "2026-08-28T14:52:25.051448+00:00",
+        "last_reported": "2026-08-28T14:52:25.051448+00:00",
+        "last_updated": "2026-08-28T14:52:25.051448+00:00",
+        "context": {
+            "id": "01M14DQ52VYPKDG0YBBMVQR6RP",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "button.office_moonside_restart",
+        "state": "unknown",
+        "attributes": {
+            "device_class": "restart",
+            "friendly_name": "office-moonside Restart"
+        },
+        "last_changed": "2026-08-28T14:52:25.080849+00:00",
+        "last_reported": "2026-08-28T14:52:25.080849+00:00",
+        "last_updated": "2026-08-28T14:52:25.080849+00:00",
+        "context": {
+            "id": "01M14DQ53RWTTMGZQ34BX8F405",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "light.office_moonside",
+        "state": "on",
+        "attributes": {
+            "effect_list": [
+                "Solid",
+                "Blink",
+                "Breathe",
+                "Wipe",
+                "Wipe Random",
+                "Random Colors",
+                "Sweep",
+                "Dynamic",
+                "Colorloop",
+                "Rainbow",
+                "Scan",
+                "Scan Dual",
+                "Fade",
+                "Theater",
+                "Theater Rainbow",
+                "Running",
+                "Saw",
+                "Twinkle",
+                "Dissolve",
+                "Dissolve Rnd",
+                "Sparkle",
+                "Sparkle Dark",
+                "Sparkle+",
+                "Strobe",
+                "Strobe Rainbow",
+                "Strobe Mega",
+                "Blink Rainbow",
+                "Android",
+                "Chase",
+                "Chase Random",
+                "Chase Rainbow",
+                "Chase Flash",
+                "Chase Flash Rnd",
+                "Rainbow Runner",
+                "Colorful",
+                "Traffic Light",
+                "Sweep Random",
+                "Chase 2",
+                "Aurora",
+                "Stream",
+                "Scanner",
+                "Lighthouse",
+                "Fireworks",
+                "Rain",
+                "Tetrix",
+                "Fire Flicker",
+                "Gradient",
+                "Loading",
+                "Rolling Balls",
+                "Fairy",
+                "Two Dots",
+                "Fairytwinkle",
+                "Running Dual",
+                "Chase 3",
+                "Tri Wipe",
+                "Tri Fade",
+                "Lightning",
+                "ICU",
+                "Multi Comet",
+                "Scanner Dual",
+                "Stream 2",
+                "Oscillate",
+                "Pride 2015",
+                "Juggle",
+                "Palette",
+                "Fire 2012",
+                "Colorwaves",
+                "Bpm",
+                "Fill Noise",
+                "Noise 1",
+                "Noise 2",
+                "Noise 3",
+                "Noise 4",
+                "Colortwinkles",
+                "Lake",
+                "Meteor",
+                "Meteor Smooth",
+                "Railway",
+                "Ripple",
+                "Twinklefox",
+                "Twinklecat",
+                "Halloween Eyes",
+                "Solid Pattern",
+                "Solid Pattern Tri",
+                "Spots",
+                "Spots Fade",
+                "Glitter",
+                "Candle",
+                "Fireworks Starburst",
+                "Fireworks 1D",
+                "Bouncing Balls",
+                "Sinelon",
+                "Sinelon Dual",
+                "Sinelon Rainbow",
+                "Popcorn",
+                "Drip",
+                "Plasma",
+                "Percent",
+                "Ripple Rainbow",
+                "Heartbeat",
+                "Pacifica",
+                "Candle Multi",
+                "Solid Glitter",
+                "Sunrise",
+                "Phased",
+                "Twinkleup",
+                "Noise Pal",
+                "Sine",
+                "Phased Noise",
+                "Flow",
+                "Chunchun",
+                "Dancing Shadows",
+                "Washing Machine",
+                "Rotozoomer",
+                "Blends",
+                "TV Simulator",
+                "Dynamic Smooth",
+                "Spaceships",
+                "Crazy Bees",
+                "Ghost Rider",
+                "Blobs",
+                "Scrolling Text",
+                "Drift Rose",
+                "Distortion Waves",
+                "Soap",
+                "Octopus",
+                "Waving Cell",
+                "Pixels",
+                "Pixelwave",
+                "Juggles",
+                "Matripix",
+                "Gravimeter",
+                "Plasmoid",
+                "Puddles",
+                "Midnoise",
+                "Noisemeter",
+                "Freqwave",
+                "Freqmatrix",
+                "GEQ",
+                "Waterfall",
+                "Freqpixels",
+                "Noisefire",
+                "Puddlepeak",
+                "Noisemove",
+                "Noise2D",
+                "Perlin Move",
+                "Ripple Peak",
+                "Firenoise",
+                "Squared Swirl",
+                "DNA",
+                "Matrix",
+                "Metaballs",
+                "Freqmap",
+                "Gravcenter",
+                "Gravcentric",
+                "Gravfreq",
+                "DJ Light",
+                "Funky Plank",
+                "Pulser",
+                "Blurz",
+                "Drift",
+                "Waverly",
+                "Sun Radiation",
+                "Colored Bursts",
+                "Julia",
+                "Game Of Life",
+                "Tartan",
+                "Polar Lights",
+                "Swirl",
+                "Lissajous",
+                "Frizzles",
+                "Plasma Ball",
+                "Flow Stripe",
+                "Hiphotic",
+                "Sindots",
+                "DNA Spiral",
+                "Black Hole",
+                "Wavesins",
+                "Rocktaves",
+                "Akemi"
+            ],
+            "supported_color_modes": [
+                "rgb"
+            ],
+            "effect": "Blends",
+            "color_mode": "rgb",
+            "brightness": 94,
+            "hs_color": [
+                121.728,
+                95.294
+            ],
+            "rgb_color": [
+                12,
+                255,
+                19
+            ],
+            "xy_color": [
+                0.174,
+                0.739
+            ],
+            "friendly_name": "office-moonside",
+            "supported_features": 36
+        },
+        "last_changed": "2026-08-28T15:31:19.839172+00:00",
+        "last_reported": "2026-08-28T15:31:19.839172+00:00",
+        "last_updated": "2026-08-28T15:31:19.839172+00:00",
+        "context": {
+            "id": "01M14FYD4Z273RF1BWYHD78NY6",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "number.office_moonside_speed",
+        "state": "69",
+        "attributes": {
+            "min": 0,
+            "max": 255,
+            "step": 1,
+            "mode": "auto",
+            "friendly_name": "office-moonside Speed"
+        },
+        "last_changed": "2026-08-28T14:52:25.082052+00:00",
+        "last_reported": "2026-08-28T14:52:25.082052+00:00",
+        "last_updated": "2026-08-28T14:52:25.082052+00:00",
+        "context": {
+            "id": "01M14DQ53TAPC5BJSQSN29TXV9",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "number.office_moonside_intensity",
+        "state": "56",
+        "attributes": {
+            "min": 0,
+            "max": 255,
+            "step": 1,
+            "mode": "auto",
+            "friendly_name": "office-moonside Intensity"
+        },
+        "last_changed": "2026-08-28T14:52:25.082257+00:00",
+        "last_reported": "2026-08-28T14:52:25.082257+00:00",
+        "last_updated": "2026-08-28T14:52:25.082257+00:00",
+        "context": {
+            "id": "01M14DQ53TXNK5TGAGA4FB6FAK",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "select.office_moonside_live_override",
+        "state": "0",
+        "attributes": {
+            "options": [
+                "0",
+                "1",
+                "2"
+            ],
+            "friendly_name": "office-moonside Live override"
+        },
+        "last_changed": "2026-08-28T14:52:25.082646+00:00",
+        "last_reported": "2026-08-28T14:52:25.082646+00:00",
+        "last_updated": "2026-08-28T14:52:25.082646+00:00",
+        "context": {
+            "id": "01M14DQ53TQASH3S1FV74SJ1KY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "select.office_moonside_playlist",
+        "state": "unavailable",
+        "attributes": {
+            "options": [],
+            "friendly_name": "office-moonside Playlist"
+        },
+        "last_changed": "2026-08-28T14:52:25.082924+00:00",
+        "last_reported": "2026-08-28T14:52:25.082924+00:00",
+        "last_updated": "2026-08-28T14:52:25.082924+00:00",
+        "context": {
+            "id": "01M14DQ53TV3XD8Y27728EZ5TC",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "select.office_moonside_preset",
+        "state": "unavailable",
+        "attributes": {
+            "options": [],
+            "friendly_name": "office-moonside Preset"
+        },
+        "last_changed": "2026-08-28T14:52:25.083143+00:00",
+        "last_reported": "2026-08-28T14:52:25.083143+00:00",
+        "last_updated": "2026-08-28T14:52:25.083143+00:00",
+        "context": {
+            "id": "01M14DQ53V4B08RSZT9EV5Y148",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "select.office_moonside_color_palette",
+        "state": "Forest",
+        "attributes": {
+            "options": [
+                "* Color 1",
+                "* Color Gradient",
+                "* Colors 1&2",
+                "* Colors Only",
+                "* Random Cycle",
+                "Analogous",
+                "April Night",
+                "Aqua Flash",
+                "Atlantica",
+                "Aurora",
+                "Aurora 2",
+                "Autumn",
+                "Beach",
+                "Beech",
+                "Blink Red",
+                "Breeze",
+                "C9",
+                "C9 2",
+                "C9 New",
+                "Candy",
+                "Candy2",
+                "Cloud",
+                "Cyane",
+                "Default",
+                "Departure",
+                "Drywet",
+                "Fairy Reaf",
+                "Fire",
+                "Forest",
+                "Grintage",
+                "Hult",
+                "Hult 64",
+                "Icefire",
+                "Jul",
+                "Landscape",
+                "Lava",
+                "Light Pink",
+                "Lite Light",
+                "Magenta",
+                "Magred",
+                "Ocean",
+                "Orange & Teal",
+                "Orangery",
+                "Party",
+                "Pastel",
+                "Pink Candy",
+                "Rainbow",
+                "Rainbow Bands",
+                "Red & Blue",
+                "Red Flash",
+                "Red Reaf",
+                "Red Shift",
+                "Red Tide",
+                "Retro Clown",
+                "Rewhi",
+                "Rivendell",
+                "Sakura",
+                "Semi Blue",
+                "Sherbet",
+                "Splash",
+                "Sunset",
+                "Sunset 2",
+                "Temperature",
+                "Tertiary",
+                "Tiamat",
+                "Toxy Reaf",
+                "Vintage",
+                "Yelblu",
+                "Yelblu Hot",
+                "Yellowout",
+                "Yelmag"
+            ],
+            "friendly_name": "office-moonside Colour palette"
+        },
+        "last_changed": "2026-08-28T14:52:25.083470+00:00",
+        "last_reported": "2026-08-28T14:52:25.083470+00:00",
+        "last_updated": "2026-08-28T14:52:25.083470+00:00",
+        "context": {
+            "id": "01M14DQ53VM0AGF5F43E0S3TQW",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.office_moonside_estimated_current",
+        "state": "1953",
+        "attributes": {
+            "state_class": "measurement",
+            "unit_of_measurement": "mA",
+            "device_class": "current",
+            "friendly_name": "office-moonside Estimated current"
+        },
+        "last_changed": "2026-08-28T15:31:19.839604+00:00",
+        "last_reported": "2026-08-28T15:31:19.839604+00:00",
+        "last_updated": "2026-08-28T15:31:19.839604+00:00",
+        "context": {
+            "id": "01M14FYD4ZNTND3XDSRA71YTTX",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.office_moonside_led_count",
+        "state": "270",
+        "attributes": {
+            "unit_of_measurement": "LEDs",
+            "friendly_name": "office-moonside LED count"
+        },
+        "last_changed": "2026-08-28T14:52:25.084268+00:00",
+        "last_reported": "2026-08-28T14:52:25.084268+00:00",
+        "last_updated": "2026-08-28T14:52:25.084268+00:00",
+        "context": {
+            "id": "01M14DQ53W08F5E5BAERNDVD8P",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.office_moonside_max_current",
+        "state": "7000",
+        "attributes": {
+            "unit_of_measurement": "mA",
+            "device_class": "current",
+            "friendly_name": "office-moonside Max current"
+        },
+        "last_changed": "2026-08-28T14:52:25.084551+00:00",
+        "last_reported": "2026-08-28T14:52:25.084551+00:00",
+        "last_updated": "2026-08-28T14:52:25.084551+00:00",
+        "context": {
+            "id": "01M14DQ53WQ55GM39VTV13RFB0",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "sensor.office_moonside_ip",
+        "state": "192.168.169.19",
+        "attributes": {
+            "friendly_name": "office-moonside IP"
+        },
+        "last_changed": "2026-08-28T14:52:25.085356+00:00",
+        "last_reported": "2026-08-28T14:52:25.085356+00:00",
+        "last_updated": "2026-08-28T14:52:25.085356+00:00",
+        "context": {
+            "id": "01M14DQ53X5VHNSRF8J86B8PRD",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.office_moonside_nightlight",
+        "state": "off",
+        "attributes": {
+            "duration": 60,
+            "target_brightness": 0,
+            "friendly_name": "office-moonside Nightlight"
+        },
+        "last_changed": "2026-08-28T14:52:25.085755+00:00",
+        "last_reported": "2026-08-28T14:52:25.085755+00:00",
+        "last_updated": "2026-08-28T14:52:25.085755+00:00",
+        "context": {
+            "id": "01M14DQ53X5XGK64M0A2WQMJFH",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.office_moonside_sync_send",
+        "state": "off",
+        "attributes": {
+            "udp_port": 21324,
+            "friendly_name": "office-moonside Sync send"
+        },
+        "last_changed": "2026-08-28T14:52:25.085948+00:00",
+        "last_reported": "2026-08-28T14:52:25.085948+00:00",
+        "last_updated": "2026-08-28T14:52:25.085948+00:00",
+        "context": {
+            "id": "01M14DQ53XZQG84C4GNPA5DEYY",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.office_moonside_sync_receive",
+        "state": "on",
+        "attributes": {
+            "udp_port": 21324,
+            "friendly_name": "office-moonside Sync receive"
+        },
+        "last_changed": "2026-08-28T14:52:25.086123+00:00",
+        "last_reported": "2026-08-28T14:52:25.086123+00:00",
+        "last_updated": "2026-08-28T14:52:25.086123+00:00",
+        "context": {
+            "id": "01M14DQ53YCYK8J8SAQJP4DS7J",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.office_moonside_reverse",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "office-moonside Reverse"
+        },
+        "last_changed": "2026-08-28T14:52:25.086391+00:00",
+        "last_reported": "2026-08-28T14:52:25.086391+00:00",
+        "last_updated": "2026-08-28T14:52:25.086391+00:00",
+        "context": {
+            "id": "01M14DQ53YC8YGK7R4EBS6V4Q7",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.office_moonside_freeze",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "office-moonside Freeze"
+        },
+        "last_changed": "2026-08-28T14:52:25.086532+00:00",
+        "last_reported": "2026-08-28T14:52:25.086532+00:00",
+        "last_updated": "2026-08-28T14:52:25.086532+00:00",
+        "context": {
+            "id": "01M14DQ53Y1QPEQE4WP61G9JVS",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "update.office_moonside_firmware",
+        "state": "on",
+        "attributes": {
+            "auto_update": false,
+            "display_precision": 0,
+            "installed_version": "0.15.1",
+            "in_progress": false,
+            "latest_version": "16.0.1",
+            "release_summary": null,
+            "release_url": "https://github.com/wled/WLED/releases/tag/v16.0.1",
+            "skipped_version": null,
+            "title": "WLED",
+            "update_percentage": null,
+            "device_class": "firmware",
+            "entity_picture": "/api/brands/integration/wled/icon.png",
+            "friendly_name": "office-moonside Firmware",
+            "supported_features": 3
+        },
+        "last_changed": "2026-08-28T14:52:25.087407+00:00",
+        "last_reported": "2026-08-28T14:52:25.087407+00:00",
+        "last_updated": "2026-08-28T14:52:25.087407+00:00",
+        "context": {
+            "id": "01M14DQ53ZD5AG8WSQ99VW0JZX",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.kitchen_display",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "Kitchen display",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:17.428349+00:00",
+        "last_reported": "2026-08-28T16:17:17.432815+00:00",
+        "last_updated": "2026-08-28T16:17:17.428349+00:00",
+        "context": {
+            "id": "01M14JJJ3M5ZBJ090B37XSAAJD",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.living_room_tv",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "Living room TV",
+            "supported_features": 152449
+        },
+        "last_changed": "2026-08-28T16:17:17.424456+00:00",
+        "last_reported": "2026-08-28T16:17:17.470060+00:00",
+        "last_updated": "2026-08-28T16:17:17.424456+00:00",
+        "context": {
+            "id": "01M14JJJ3G9H0A5AFSZR4J46RZ",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.living_room_speaker",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Living room speaker",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:17.426506+00:00",
+        "last_reported": "2026-08-28T16:17:17.487279+00:00",
+        "last_updated": "2026-08-28T16:17:17.426506+00:00",
+        "context": {
+            "id": "01M14JJJ3JGQHPTFK0M5KTPE1A",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.bathroom_speaker",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Bathroom speaker",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:17.491109+00:00",
+        "last_reported": "2026-08-28T16:17:17.577934+00:00",
+        "last_updated": "2026-08-28T16:17:17.491109+00:00",
+        "context": {
+            "id": "01M14JJJ5KFXXDNVYEWT5XCKAT",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.bedroom_speaker",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Bedroom speaker",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:17.439979+00:00",
+        "last_reported": "2026-08-28T16:17:17.477571+00:00",
+        "last_updated": "2026-08-28T16:17:17.439979+00:00",
+        "context": {
+            "id": "01M14JJJ3ZAQHCDY21M35VYB6C",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.whole_place",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Whole Place",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:21.306615+00:00",
+        "last_reported": "2026-08-28T16:17:48.721756+00:00",
+        "last_updated": "2026-08-28T16:17:21.306615+00:00",
+        "context": {
+            "id": "01M14JJNWT5B9EVH0N5BJC538E",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.not_bedroom",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Not bedroom",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:21.401562+00:00",
+        "last_reported": "2026-08-28T16:17:48.823198+00:00",
+        "last_updated": "2026-08-28T16:17:21.401562+00:00",
+        "context": {
+            "id": "01M14JJNZSJA2MX5GRVRSDPGJ8",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.living_area",
+        "state": "off",
+        "attributes": {
+            "device_class": "speaker",
+            "friendly_name": "Living Area",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:17.569380+00:00",
+        "last_reported": "2026-08-28T16:17:17.600400+00:00",
+        "last_updated": "2026-08-28T16:17:17.569380+00:00",
+        "context": {
+            "id": "01M14JJJ811CZM85WNYVGTGK59",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "media_player.james_pixel_tablet",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "James' Pixel Tablet",
+            "supported_features": 152461
+        },
+        "last_changed": "2026-08-28T16:17:21.769046+00:00",
+        "last_reported": "2026-08-28T16:17:47.554269+00:00",
+        "last_updated": "2026-08-28T16:17:21.769046+00:00",
+        "context": {
+            "id": "01M14JJPB9SSBPRTMBFDBE747Z",
+            "parent_id": null,
+            "user_id": null
+        }
+    },
+    {
+        "entity_id": "switch.wemo_mini",
+        "state": "off",
+        "attributes": {
+            "friendly_name": "Wemo Mini"
+        },
+        "last_changed": "2026-08-28T15:34:02.669643+00:00",
+        "last_reported": "2026-08-28T15:34:02.669643+00:00",
+        "last_updated": "2026-08-28T15:34:02.669643+00:00",
+        "context": {
+            "id": "01M14G3C5DMT2QFFB9T4CKRZZP",
+            "parent_id": null,
+            "user_id": null
+        }
+    }
+]

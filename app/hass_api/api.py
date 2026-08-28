@@ -62,7 +62,47 @@ class HomeAssistantAPI:
             return json.loads(request.content)
         except json.decoder.JSONDecodeError:
             log.error("Recieved invalid JSON during log retrieval.")
+    
+            
+    # Retrieves the user's list of configured entities.
+    def retrieve_entities(self):
         
+        # Make the request
+        log.info("Retrieving entity list")
+        path = "/states"
+        request = self.__request(path)
+
+        try:
+            states = json.loads(request.content)
+        except json.decoder.JSONDecodeError:
+            log.error("Recieved invalid JSON during entity retrieval.")
+            return []
+        
+        # Bit of error checking
+        if not isinstance(states, list):
+            log.error("Recieved an invalid entity list during entity retrieval.")
+            return []
+
+        # Return the list of entity IDs, along with their friendly name, and icon or entity picture if available
+        # If there is neither, the icon can be inferred from the entity type
+        result = []
+        for state in states:
+            item = {
+                'entity_id': state['entity_id'],
+                'friendly_name': state['attributes']['friendly_name']
+            }
+            # See if there's an icon
+            try:
+                item['icon'] = state['attributes']['icon']
+            except KeyError:
+                pass
+            # See if there's an entity picture
+            try:
+                item['entity_picture'] = state['attributes']['entity_picture']
+            except KeyError:
+                pass
+        
+        return result
 
     # Make an API request. This function call allows extra things to be ran when making API calls like the logger.
     def __request(self, path):
